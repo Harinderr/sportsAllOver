@@ -1,0 +1,51 @@
+.container {
+  background-color: var(--bg);
+  display: flex;
+  gap: 1rem;
+  padding-block: 3rem;
+  padding-inline: 2rem;
+}
+.wrapper {
+   
+    width: 70%;
+    
+    margin-inline: auto;
+}
+
+.user {
+    width: 7rem;
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: center;
+}
+.user img {
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 2px solid var(--textColor);
+    border-radius: 50%;
+}
+
+
+.heading {
+    color: var(--textColor);
+    
+}
+.description {
+    color: var(--softTextColor);
+    font-size: 1rem;
+    letter-spacing: 1.5;
+   
+}
+
+.content img {
+   height: 300px;
+   width: 300px;
+}
+
+
+.content img {
+    float: left;
+    margin: 1rem;
+    border-radius: 10px;
+}

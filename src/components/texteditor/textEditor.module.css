@@ -1,0 +1,33 @@
+.container {
+    background-color: var(--bg);
+    
+    
+}
+.form {
+   padding-block: 3rem; 
+}
+
+.form button {
+    background-color: red;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: larger;
+    border-radius: .5rem;
+}
+.form textarea {
+    padding: 1rem;
+}
+.form input:focus{
+    outline: none;
+    border: 2px solid blue;
+}
+.form textarea:focus {
+    outline: none;
+    border: 2px solid blue;
+}
+.container form input[type="text"]{
+    padding: 1rem;
+}
+.container form label {
+    color : var(--textColor)
+}

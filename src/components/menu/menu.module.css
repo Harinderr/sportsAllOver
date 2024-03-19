@@ -1,0 +1,9 @@
+.heading {
+    color:  var(--textColor);
+}
+
+.menu_container {
+    height: 25rem;
+    width: 30%;
+    overflow-y: scroll;
+}

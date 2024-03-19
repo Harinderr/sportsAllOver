@@ -1,5 +1,10 @@
-import styles from "./homepage.module.css";
+
+import Blog from "@/components/Blog/blog";
+import Feature from "@/components/featureSection/Feature";
 
 export default function Home() {
-  return <div>Hello</div>;
+  return <div>
+    <Feature></Feature>
+    <Blog></Blog>
+  </div>;
 }

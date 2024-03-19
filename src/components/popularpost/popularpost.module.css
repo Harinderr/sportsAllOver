@@ -1,0 +1,31 @@
+.post_container {
+    background-color: var(--softBg);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+    padding: 1rem;
+    height: 130px;
+    margin-block: 1rem;
+}
+.content {
+    overflow: hidden;
+}
+
+.content a {
+    font-size: 16px;
+}
+
+.content p {
+    font-size: 10px;
+}
+
+.post_container img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,45 @@
+
+.main_container {
+    background-color: var(--bg);
+    height: auto;
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.blog_container {
+    padding-inline: 3rem;
+
+}
+@media screen and (min-width:1470px)  {
+    .main_container {
+        padding-inline: 6rem;
+    }
+}
+
+
+
+
+@media screen and (max-width:1144px) {
+    .wrapper {
+        flex-direction: column;
+       
+    }
+    .blog_container{
+        width: 100%;
+    }
+
+}
+ 
+@media screen and (max-width:570px){
+    .blog_container {
+        padding: 15px;
+    }
+    .main_container h1 {
+        font-size: 2rem;
+    }
+}

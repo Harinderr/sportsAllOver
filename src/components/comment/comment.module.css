@@ -1,0 +1,39 @@
+.container form  input{
+    width: 100%;
+}
+.container .comment_form {
+    margin-top: 2rem;
+}
+
+.container form input[type="text"]{
+    padding: 1rem;
+}
+.container form label {
+    color: var(--textColor);
+    font-size: 1.4rem;
+}
+.comment_container {
+    margin-top: .6rem;
+    padding: 1rem;
+    overflow: hidden;
+    background-color: var(--softBg);
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.comment  {
+ padding-inline: 16px;
+}
+.user img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--textColor);
+}
+
+

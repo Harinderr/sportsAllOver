@@ -1,0 +1,76 @@
+/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+--bg : white;
+--textColor : black;
+--softBg : #f0f0f0;
+--softTextColor : #626262;
+
+}
+
+.light {
+    --bg : white;
+--textColor : black;
+--softBg : #f0f0f0;
+--softTextColor : #626262;
+}
+
+.dark {
+    --bg : #0f172a;
+    --textColor : #ddd;
+    --softBg : #1f273a;
+    --softTextColor : #a6a6a6;
+}
+ 
+h1, p ,a{
+    color: var(--textColor);
+
+}
+
+
+* {
+  color: var(--textColor);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Slab", serif;;
+}
+
+body {
+    
+    background-color: var(--bg) !important;
+}
+
+
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+
+
+/* scroll bar css */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(25, 25, 25); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2d2d2d; 
+  }

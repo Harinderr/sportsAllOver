@@ -1,0 +1,107 @@
+
+.heading {
+     font-size:  3rem;
+     font-weight: 800;
+     line-height: 1.2;
+    
+}
+
+.pg {
+    font-size: 1rem;
+    line-height: 2;
+
+}
+
+.btn {
+    border: 1px solid;
+    background-color:var(--bg);
+    color: var(--textColor);
+    padding: .5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    
+}
+
+.btn:hover {
+    background-color: var(--textColor);
+    color: var(--bg);
+}
+
+.image {
+    position: absolute;
+    right: 0;
+}
+ 
+
+
+
+
+.features{
+    background-color: var(--bg);
+    color: var(--textColor);
+padding-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+   height: 35rem;
+}
+
+.right {
+   width: 400px;
+   height: fit-content;
+}
+
+@media  screen and (max-width:992px) {
+        .features {
+            padding: 1.5rem;
+            height: 30rem;
+        }
+
+     .heading {
+        font-size: 2.5rem;
+     }
+     .pg {
+        font-size: .8rem;
+     }
+     .btn {
+        font-size: .8rem;
+        font-weight: 600;
+     }
+}
+
+@media  screen and (max-width:659px) {
+     .heading {
+        font-size: 2rem;
+     }
+     .pg {
+        font-size: .6rem;
+     }
+     .btn {
+        font-size: .6rem;
+     }
+     .right {
+        padding-right: 1rem;
+        padding-left: .2rem;
+     }
+     .image_container {
+      display: none;
+     }
+
+     .features {
+        padding: 2rem;
+     height: fit-content;
+        
+     }
+     
+
+    
+   
+     .right{
+        width: 100%;
+        height: fit-content;
+        padding-inline: 2rem;
+        
+     }
+}
+
+
