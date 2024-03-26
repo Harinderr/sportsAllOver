@@ -15,6 +15,10 @@
     padding-inline: 3rem;
 
 }
+
+.pagination button:disabled {
+    background-color: rgb(255, 131, 131);
+}
 @media screen and (min-width:1470px)  {
     .main_container {
         padding-inline: 6rem;

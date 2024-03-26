@@ -3,7 +3,7 @@ import { connectToDB } from "@/utility/DatabaseConnection";
 import { Content } from "@/utility/schema/blogSchema";
 connectToDB()
 export async function GET(req,res) {
-
+      
     const blogs = await Content.find({})
     
   return  NextResponse.json({result:blogs})

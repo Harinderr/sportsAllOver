@@ -1,0 +1,22 @@
+.container {
+    background-color: var(--bg);
+    display: flex;
+    justify-content: space-around;
+    padding-block: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.container div {
+    background-color: var(--softBg);
+   padding: 1rem;
+    width: 8rem;
+    text-align: center;
+    border-radius: .6rem;
+}
+
+.container div:hover {
+    border: 1px solid rgb(32, 75, 246);
+    color: rgb(32, 75, 246);
+
+}

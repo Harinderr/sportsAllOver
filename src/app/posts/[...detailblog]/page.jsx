@@ -4,18 +4,28 @@ import Image from "next/image"
 import Menu from "@/components/menu/menu"
 import Comment from "@/components/comment/comment"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import { useSearchParams } from "next/navigation"
+import { comment } from "postcss"
+
 export default function DetailBlog({params}) {
-    const[selectedId, setSelectedId] = useState(null)
+ const searchParams = useSearchParams()
+ const slug = searchParams.get('slug')
+
+ const [selectedid , setSelectedId] = useState()
+   
    const [data, setData] = useState({})
-  //  const dateobj = new Date(data.createdAt);
-  //  const simpledate  =   dateobj.toISOString().split('T')[0];
+   
+ 
    
     async function getBlog(id) {
       try{
-        let response = await fetch(`http://localhost:3000/api/${id}`)
+        let response = await fetch(`http://localhost:3000/api/posts/${id}?slug=${slug}`)
         if(response.ok) {
-          let {result }= await response.json()
+          let { result }= await response.json()
           setData(result)
+        console.log(result)
+          
         }
       }
      catch(err) {
@@ -23,12 +33,12 @@ export default function DetailBlog({params}) {
     }
   }
   useEffect(() => {
-    const id = params.detailblog[1];
-    setSelectedId(id);
+    const id = params.detailblog[0];
+    console.log(id)
+    setSelectedId(id)
     getBlog(id);
   
 }, [params.detailblog]);
-console.log(data)
     return (
         <div className={styles.blog_box}>
         <div className={styles.container}>
@@ -36,17 +46,17 @@ console.log(data)
 <div className={styles.wrapper}>
      <h1 className={styles.heading}>{data.title}</h1>
       <div className={styles.user}>
-        <img src="/style.png" alt="" />
+        <img src={data.img} alt="" />
         <div className={styles.userDetail}>
-            <p>John simons</p>
-            {/* <p>{simpledate}</p> */}
+            <p>{data.user?.name}</p>
+            <p>{data.createdAt}</p>
         </div>
       </div>
       <div className={styles.content}>
     <img src="/market.jpg" alt="no image" />
-      <p className={styles.description}>{data.content}</p>
+      <p className={styles.description}>{data.des}</p>
         </div>
-        <Comment></Comment>
+        <Comment id={selectedid} slug={slug}></Comment>
         
 
         </div>

@@ -31,7 +31,10 @@ if(status == 'authenticated'){
                 <Link  className={styles.nav_link} href={'/'}>About</Link>
                 {
                     (status === 'authenticated') ? (
-                      <div style={{cursor:'pointer'}} onClick={()=> signOut()} className={styles.nav_link}>Logout</div>
+                        <div className={styles.nav_link}>
+                        <div style={{cursor:'pointer'}} onClick={()=> signOut()}>Logout</div>
+                        <Link href={'/write'}>Write</Link>
+                        </div>
                     ) : (
                         <Link className={styles.nav_link}  href={'/login'}>Login</Link>
                     )

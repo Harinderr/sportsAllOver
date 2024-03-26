@@ -5,7 +5,7 @@
 export default function PopularPost({src}) {
     const fulldate = new Date()
     const date  =   fulldate.toISOString().split('T')[0];
-    console.log(date)
+    
     return (
         <div className={`${styles.post_container}`}>
           <div className={styles.content}>

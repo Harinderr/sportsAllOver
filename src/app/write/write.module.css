@@ -1,0 +1,17 @@
+.container {
+    background-color: var(--bg);
+    
+}
+.title[type='text'] {
+    padding: 1rem;
+    background-color: var(--softBg);
+}
+.des {
+    
+    background-color: var(--softBg);
+}
+
+.options {
+    background-color: var(--softBg);
+    padding: 1rem;
+}
