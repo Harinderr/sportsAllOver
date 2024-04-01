@@ -23,8 +23,14 @@
     font-size: 1.2rem;
 }
 
+
 .login_container form input[type="text"] {
     padding: .8rem;
+    color: var(--textColor);
+}
+.login_container form input[type="email"] {
+    padding: .8rem;
+    color: black;
 }
 .login_container form input[ type="password"] {
     padding: .8rem;

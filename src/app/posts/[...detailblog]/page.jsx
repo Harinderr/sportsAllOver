@@ -24,7 +24,7 @@ export default function DetailBlog({params}) {
         if(response.ok) {
           let { result }= await response.json()
           setData(result)
-        console.log(result)
+        
           
         }
       }

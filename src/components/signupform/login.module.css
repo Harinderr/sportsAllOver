@@ -1,0 +1,70 @@
+.login_wrapper {
+    width: 100%;
+    background-color: var(--bg);
+    padding-block: 3rem;
+}
+.login_container {
+    background-color: var(--softBg);
+    padding-top: 2rem;
+    width: 65%;
+    margin: auto;
+}
+.login_container form {
+    width: 100%;
+   
+    margin-inline: auto;
+    padding: 2rem;
+    
+}
+.login_container form label {
+    margin-block: 1rem;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+
+.login_container form input[type="text"] {
+    padding: .8rem;
+    color: var(--textColor);
+}
+.login_container form input[type="email"] {
+    padding: .8rem;
+    color: black;
+}
+.login_container form input[ type="password"] {
+    padding: .8rem;
+}
+.login_container form button {
+    margin-top: 2rem;
+    font-weight: 700;
+    font-size: 1.2em;
+    background-color: red;
+    padding: .8rem;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.authLinks {
+    padding: 2rem;
+  
+   
+}
+.authLinks .google .google_box {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.authLinks .google {
+background-color: var(--bg);
+text-align: center;
+padding: .8rem;
+font-size: 1.2em;
+display: flex;
+justify-content: space-around;
+}

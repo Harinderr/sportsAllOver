@@ -3,6 +3,7 @@ import prisma from "@/utility/prismaclient"
 import { NextResponse } from "next/server"
 
 
+
 export async function POST(req,res) {
     const session = await getAuthSession()
     if(!session) {
@@ -11,12 +12,14 @@ export async function POST(req,res) {
     else  { 
       try {
         const payload = await req.json()
+        console.log(payload)
     const createpost  = await prisma.post.create({
         data : {
             title : payload.title,
             des : payload.des,
             img : payload.img,
            slug : payload.slug,
+           
             user : {
              connect : {  email : session.user.email}
             },
@@ -33,7 +36,7 @@ export async function POST(req,res) {
       }
       
       catch (error) {
-        console.log('some error while saving' + error)
+        console.log('some error while saving ' + error)
       return NextResponse.json('Thre is an error')
       }
      

@@ -9,7 +9,7 @@ export default function Write(){
    const[title, setTitle] = useState('')
    const [des ,setDes] = useState('')
    const [url, setUrl] = useState('')
-   const [cat, setCat]= useState('')
+   const [cat, setCat]= useState('cricket')
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -83,7 +83,7 @@ uploadTask.on('state_changed',
          <div  className="flex flex-col gap-4 w-4/5 mx-auto py-16">
             <input type="text" className={styles.title} name="title" onChange={(e)=> setTitle(e.target.value)} placeholder="Enter blog title..." />
             <input type="file" onChange={(e)=> setFile(e.target.files[0])} />
-            <label for="options">Select an Category:</label>
+            <label htmlForfor="options">Select an Category:</label>
   <select className={styles.options} id="options" name="" onChange={(e)=>{ 
     e.preventDefault()
     setCat(e.target.value)}}>

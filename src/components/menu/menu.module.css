@@ -1,9 +1,27 @@
 .heading {
     color:  var(--textColor);
+    font-weight: bolder;
 }
 
 .menu_container {
     height: 25rem;
     width: 30%;
     overflow-y: scroll;
+}
+
+@media screen and (max-width:1144px) {
+  
+    .menu_container{
+        width: 100%;
+        padding: 2rem 3rem;
+        height: fit-content;
+        overflow: hidden;
+       
+    }
+
+}
+@media screen and (max-width:510px) {
+.menu_container {
+    padding: 1rem;
+}
 }

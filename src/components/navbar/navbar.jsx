@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 export default function Navbar() {
    const [open ,setOpen] = useState(false)
    const {data, status} = useSession()
+    console.log(data,status);
    const router = useRouter()
    function handleNav() {
     setOpen(open == false ? true : false)
@@ -17,7 +18,7 @@ export default function Navbar() {
    
    useEffect(()=> {
 if(status == 'authenticated'){
-    router.push('/')
+    router.push('/dashboard')
 }
    },[status])
 
@@ -27,7 +28,7 @@ if(status == 'authenticated'){
             <div className={styles.name}>BLOGPOST</div>
             <div className={styles.nav_links}>
                 <Link className={styles.nav_link}  href={'/'}>Home</Link>
-                <Link  className={styles.nav_link} href={'/'}>Contact</Link>
+                <Link  className={styles.nav_link} href={'#latest'}>Latest</Link>
                 <Link  className={styles.nav_link} href={'/'}>About</Link>
                 {
                     (status === 'authenticated') ? (
@@ -36,7 +37,7 @@ if(status == 'authenticated'){
                         <Link href={'/write'}>Write</Link>
                         </div>
                     ) : (
-                        <Link className={styles.nav_link}  href={'/login'}>Login</Link>
+                        <Link className={styles.nav_link}  href={'/form/login'}>Login</Link>
                     )
                 }
                 <Theme className={styles.nav_link}></Theme>

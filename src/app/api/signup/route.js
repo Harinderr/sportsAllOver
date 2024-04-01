@@ -26,25 +26,27 @@ export async function GET(req,res){
 //   } else {
 //     console.log('Data is valid:', result.value);
 //   }
-    
+    const hashPass = bcrypt.hashSync(payload.password,bcryptSalt)
    
   try { 
-    const existingUser = await prisma.user.findUnique({
+    const existingEmail = await prisma.user.findUnique({
         where : {
             email : payload.email
         }
     })
-    if (!existingUser){
-        return NextResponse.json({user : null, message : 'invalid user Email'},{status : 409})
+    if (existingEmail){
+        return NextResponse.json({user : null, message : 'user with email exists'},{status : 409})
     }
-  
-    const passMatch = bcrypt.compare(payload.password, existingUser.password)
-    if(passMatch) {
-        
-        return NextResponse.json({result :'user detail matched'})}
-    }
-   
-    
+    const newUser = await prisma.user.create({
+        data : {
+            name :payload.username,
+            email : payload.email,
+            password : hashPass
+            
+        }
+    })
+    const {password : newPass, ...rest} = newUser;
+    return NextResponse.json({result :'user detail saved', data: rest})}
     catch (err) {
         console.log('there is an error'+ err);
     }

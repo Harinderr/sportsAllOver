@@ -29,3 +29,19 @@
 .content a:hover {
     text-decoration: underline;
 }
+
+@media screen and (max-width:1144px) {
+  
+    
+    .post_container{
+        justify-content: space-between;
+    }
+    
+    .post_container img {
+        height: 100px;
+         width: 100px;
+    }
+
+
+}
+

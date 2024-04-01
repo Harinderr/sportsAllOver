@@ -7,11 +7,11 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from "next/navigation"
 // import { messageContext } from "@/contextapi/messageContext"
 export default function Blog({page,cat}) {
-    console.log(typeof page)
+   
     const [data ,setData] = useState([])
     const [count , setCount] = useState(3)
     const pathname = usePathname()
-    console.log(pathname)
+   
     let previous = page == 1 ? false : true;
     let next = page == Math.ceil(count/3)  ? false : true  ;
     const router = useRouter()
@@ -69,13 +69,13 @@ export default function Blog({page,cat}) {
     
     useEffect(() => {
         blogData()
-            console.log(data,count)
+           
     },[page])
 
    
     return (
        <div className={styles.main_container}>
-        <h1 className=" pl-16 py-10 ">LATEST</h1>
+        <h1 className=" pl-16 py-10 " id="latest">LATEST</h1>
         <div className={styles.wrapper}>
          <div className={`${styles.blog_container} flex flex-col w-2/3  gap-4 flex-wrap`}>
         

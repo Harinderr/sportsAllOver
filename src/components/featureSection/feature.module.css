@@ -48,7 +48,9 @@ padding-top: 5rem;
 
 .right {
    width: 400px;
-   height: fit-content;
+   height: 100%;
+  
+   
 }
 
 @media  screen and (max-width:992px) {
