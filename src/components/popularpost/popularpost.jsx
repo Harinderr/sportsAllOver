@@ -3,7 +3,7 @@
  import Image from "next/image";
 
  
-export default function PopularPost({id, title, des,slug}) {
+export default function PopularPost({id, title,src, des,slug}) {
     const fulldate = new Date()
     const date  =   fulldate.toISOString().split('T')[0];
    
@@ -16,7 +16,7 @@ export default function PopularPost({id, title, des,slug}) {
           <Link href={`/posts/${id}?slug=${slug}`} className="font-bold">{title.substring(0,50)+'...'}</Link>
           <p className={styles.paragraph}>{des.substring(0,60)+'...'}</p>
             </div>  
-            <Image alt="no image" src={'/food.png'} width={50} height={50} ></Image>
+            <Image alt="no image" src={src} width={50} height={50} ></Image>
 
         </div>
     )

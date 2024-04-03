@@ -13,10 +13,10 @@
 }
 
 .user {
-    width: 7rem;
+    width: 14rem;
     display: flex;
-    justify-content: space-between;
-    
+    justify-content: flex-start;
+    gap: 10px;
     align-items: center;
 }
 .user img {
@@ -28,6 +28,9 @@
 
 .content {
     min-height: 20rem;
+}
+.content img {
+    object-fit: contain;
 }
 
 .heading {
@@ -51,4 +54,20 @@
     float: left;
     margin: 1rem;
     border-radius: 10px;
+}
+
+
+@media  screen and (max-width:1155px) {
+    .container {
+          flex-direction: column;
+          padding: 3rem; 
+           
+    }
+    .wrapper {
+        
+        width: 100%;
+        
+    }
+   
+
 }

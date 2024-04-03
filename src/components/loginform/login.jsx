@@ -22,6 +22,7 @@ export default function Login() {
       email : formData.email,
       password : formData.password,
       redirect : false
+      
   })
   
   if(signinData.error){

@@ -81,7 +81,7 @@ export default function Blog({page,cat}) {
         
  
            { data.map((val)=> {
-            return  <Post  src={'/coding.png'} slug={val.slug} title={val.title} content={val.des} date ={val.createdAt} id = {val.id}  ></Post>
+            return  <Post  src={val.img} slug={val.slug} title={val.title} content={val.des} date ={val.createdAt} id = {val.id}  ></Post>
            })}
         
        <div className={`${styles.pagination} flex justify-between`}>

@@ -13,7 +13,7 @@ export const authoption = {
     signIn: "/form/login",
   },
   session: {
-    jwt: true,
+    strategy : "jwt"
   },
   jwt: {
     secret: process.env.JWT_SECRET,
@@ -29,12 +29,9 @@ export const authoption = {
       clientSecret: process.env.GOOGLE_SECRET,
     }),
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
 
-      credentials: {
-        email: { label: "Email", type: "text", placeholder: "ram@gmail.com" },
-        password: { label: "Password", type: "password" },
-      },
+      credentials: {},
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
           // Any object returned will be saved in `user` property of the JWT
@@ -70,14 +67,17 @@ export const authoption = {
   ],
   callbacks : {
     async jwt({ token, user }) {
-     
+     if(user){
       return {
         ...token,
         username : user.username
       }
+     }
+     return token
+     
     },
-    async session({ session,user,  token }) {
-      console.log(session,token,user)
+    async session({ session,  token }) {
+    
       return {
         ...session,
         user : {
@@ -85,6 +85,7 @@ export const authoption = {
           username : token.username
         }
       }
+    
     },
 
    

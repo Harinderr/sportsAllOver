@@ -3,6 +3,7 @@ import { app } from '@/utility/firebase';
 import styles from './write.module.css'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useEffect, useState } from "react"
+import { useRouter } from 'next/navigation';
 const storage = getStorage(app);
 export default function Write(){
    const [file, setFile] = useState('')
@@ -10,10 +11,15 @@ export default function Write(){
    const [des ,setDes] = useState('')
    const [url, setUrl] = useState('')
    const [cat, setCat]= useState('cricket')
+   const router = useRouter()
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      if(url == ''){
+        console.log('there is an error img')
+        return null
+      }
         const slugMaker = (val) => {
          let slug = val.toLowerCase().split(' ').join('-')
          return slug
@@ -30,6 +36,7 @@ export default function Write(){
         })
         if(res.ok) {
             alert('data sent')
+            router.push('/')
         }
     }
     catch(err) {

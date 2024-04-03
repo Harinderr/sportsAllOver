@@ -1,16 +1,29 @@
 import { useEffect, useState } from "react";
 import styles from "./comment.module.css"
 import { wordLimit } from "@/utility/wordlimit"
+import { func } from "joi";
 export default function Comment({ id,slug}) {
  
  
    const [formData, setFormData]= useState({})
    const[comment, setComment] = useState([])
+   const image = comment.user?.image
+//    const firstLett comment.user?.name.slice(0,1).toUpperCase() 
    function handleChange(e) {
     let {name, value} = e.target;
    setFormData({...formData, [name]:value})
    
 }
+
+function convertTime(val) {
+    const date = new Date(val);
+    const year = date.getFullYear();
+const month = date.getMonth() + 1; // Add 1 to month since getMonth() returns zero-based month index
+const day = date.getDate();
+   const time = `${day}-${month}-${year}`
+   return time
+}
+
 
 async function commentData() {
     try {
@@ -54,6 +67,7 @@ useEffect(() => {
     commentData()
 
 },[])
+console.log(comment)
     return (
         <div className={styles.container}>
             <div className={styles.comment_form}>
@@ -65,10 +79,11 @@ useEffect(() => {
              { comment.map((item)=> {
                 return (<div className={styles.comment_container} key={item.id} >
                     <div className={styles.user}>
-                   <img src="/fashion.png" alt="" />
+                  { item.user?.image ?<img src={item.user.image} alt="" />: 
+                  <div className="box w-8 h-8  bg-red-300 text-black flex justify-center align-middle rounded-full text-md font-bold "><p className="drop-shadow-md">{item.user.name.slice(0,1).toUpperCase()}</p></div>}
                    <div className="detail">
                     <p>{item.user.name}</p>
-                    <p>{item.createdAt}</p>
+                    <p>{convertTime(item.createdAt) }</p>
                    </div>
                     </div>
                     <div className={styles.comment}>

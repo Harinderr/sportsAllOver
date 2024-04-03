@@ -26,7 +26,7 @@ export default function Menu() {
             <h4 className={styles.heading}>Most Popular</h4>
             <img src="" alt="" />
             {data.map((item)=> {
-               return   <PopularPost id={item.id} title={item.title} des={item.des} slug={item.slug}></PopularPost>
+               return   <PopularPost id={item.id} src = {item.img} title={item.title} des={item.des} slug={item.slug}></PopularPost>
             })}
           
            

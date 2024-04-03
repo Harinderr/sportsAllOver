@@ -36,7 +36,7 @@ text-align: left;
 
 .paragraph {
     max-height: 3rem;
-    overflow: hidden;
+   overflow: hidden;
  
    
 }
@@ -50,18 +50,21 @@ text-align: left;
 
 
 @media screen and (max-width:766px) {
-   .post_container p {
-    display: none;
-   }
+  
 
 }
 @media screen and (max-width:570px) {
    .post_container .content a {
+   font-size: 1.2rem;
+  
+   }
+   .post_container .content p {
    font-size: .8rem;
   
    }
 
  .post_container {
+    justify-content: space-between;
     height: 10rem;
     overflow: hidden;
     padding: 10px;
@@ -74,4 +77,14 @@ text-align: left;
  }
 
 
+}
+
+@media screen and (max-width:460px) {
+    .post_container .content a {
+        font-size: 1rem;
+    }
+    .post_container .content p {
+        font-size: .6rem;
+    }
+   
 }

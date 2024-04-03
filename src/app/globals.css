@@ -43,10 +43,7 @@ h1, p ,a{
     font-family: "Roboto Slab", serif;;
 }
 
-body {
-    
-    background-color: var(--bg) !important;
-}
+
 
 
 h1 {
