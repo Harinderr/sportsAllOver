@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./comment.module.css"
-import { wordLimit } from "@/utility/wordlimit"
-import { func } from "joi";
-export default function Comment({ id,slug}) {
+import Image from "next/image";
+
+export default function Comment({ slug}) {
  
  
    const [formData, setFormData]= useState({})
    const[comment, setComment] = useState([])
-   const image = comment.user?.image
+   
 //    const firstLett comment.user?.name.slice(0,1).toUpperCase() 
    function handleChange(e) {
     let {name, value} = e.target;
@@ -25,19 +25,7 @@ const day = date.getDate();
 }
 
 
-async function commentData() {
-    try {
-        let response = await fetch(`http://localhost:3000/api/comment?slug=${slug}`)
-        if(response.ok) {
-            const { comments } = await response.json()
-            setComment(comments)
-            console.log(comments)
-        }
-    }
-    catch (err) {
-        throw new Error('Data not fetched')
-    }
-}
+
 
 async   function handleLogin(e) {
     e.preventDefault();
@@ -63,11 +51,24 @@ async   function handleLogin(e) {
 }
  
 useEffect(() => {
-  
+  const commentData = async () => {
+    try {
+        let response = await fetch(`http://localhost:3000/api/comment?slug=${slug}`)
+        if(response.ok) {
+            const { comments } = await response.json()
+            setComment(comments)
+            console.log(comments)
+        }
+    }
+    catch (err) {
+        throw new Error('Data not fetched')
+    }
+}
+
     commentData()
 
-},[])
-console.log(comment)
+},[slug])
+
     return (
         <div className={styles.container}>
             <div className={styles.comment_form}>
@@ -79,8 +80,7 @@ console.log(comment)
              { comment.map((item)=> {
                 return (<div className={styles.comment_container} key={item.id} >
                     <div className={styles.user}>
-                  { item.user?.image ?<img src={item.user.image} alt="" />: 
-                  <div className="box w-8 h-8  bg-red-300 text-black flex justify-center align-middle rounded-full text-md font-bold "><p className="drop-shadow-md">{item.user.name.slice(0,1).toUpperCase()}</p></div>}
+                  { item.user?.image ? <Image src={item.user.image} alt="Image Unavailable"></Image> :  <div className="box w-8 h-8  bg-red-300 text-black flex justify-center align-middle rounded-full text-md font-bold "><p className="drop-shadow-md">{item.user.name.slice(0,1).toUpperCase()}</p></div>}
                    <div className="detail">
                     <p>{item.user.name}</p>
                     <p>{convertTime(item.createdAt) }</p>

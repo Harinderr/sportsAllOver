@@ -30,12 +30,17 @@
     text-decoration: underline;
 }
 
+/* @media screen and (max-width:1144px) {
+
+} */
+
 @media screen and (max-width:1144px) {
   
     
     .post_container{
         justify-content: space-between;
-        height: 12rem;
+      
+        
     }
     .post_container .content a  {
         font-size: 1.5rem ;
@@ -55,11 +60,46 @@
 
 @media screen and (max-width:1144px) {
     .post_container .content a {
+        font-size: 1.5rem;
+       
+        }
+        .post_container .content {
+            padding: 1rem;
+        }
+        .post_container .content p {
+        font-size: 1rem;
+       
+       
+        }
+     
+      .post_container {
+         height: 15rem;
+         overflow: hidden;
+         padding: 10px;
+         
+      }
+     
+      .post_container img {
+         height: 270px;
+         width: 270px;
+         object-fit: contain;
+         aspect-ratio: 2/1;
+         
+      }
+      
+}
+
+@media screen and (max-width:570px) {
+    .post_container .content a {
         font-size: 1.2rem;
        
         }
+        .post_container .content {
+            padding: 1rem;
+        }
         .post_container .content p {
         font-size: .8rem;
+       
        
         }
      
@@ -73,5 +113,40 @@
       .post_container img {
          height: 130px;
          width: 130px;
+         object-fit: contain;
+         aspect-ratio: 2/1;
+         
       }
+   
+}
+
+@media screen and (max-width:460px) {
+    .post_container .content a {
+        font-size: 1rem;
+       
+        }
+        .post_container .content {
+            padding: 1rem;
+        }
+        .post_container .content p {
+        font-size: .6rem;
+       
+       
+        }
+     
+      .post_container {
+         height: 10rem;
+         overflow: hidden;
+         padding: 10px;
+         
+      }
+     
+      .post_container img {
+         height: 130px;
+         width: 130px;
+         object-fit: contain;
+         aspect-ratio: 2/1;
+         
+      }
+   
 }

@@ -22,7 +22,7 @@ export function  ThemeContextProvider({children}) {
   },[theme])
 
     const toggle = () =>  {
-        setTheme(theme== 'light' ? 'dark' : 'light')
+        setTheme(theme=='light'? 'dark':'light');
     }
    
     return (

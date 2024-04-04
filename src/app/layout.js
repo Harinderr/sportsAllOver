@@ -4,7 +4,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { ThemeContextProvider } from '@/contextapi/ThemeContext'
 import ThemeBox from '@/provider/ThemeProvider'
-import { messageContextProvider } from '@/contextapi/messageContext'
+
 import { AuthProvider } from '@/provider/authProvider'
 const inter = Inter({ subsets: ['latin'] })
 

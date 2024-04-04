@@ -9,10 +9,14 @@
     display: flex;
     flex-direction: row;
     
+    
 }
+
+
 
 .blog_container {
     padding-inline: 3rem;
+    width: 70%;
 
 }
 
@@ -23,6 +27,10 @@
     .main_container {
         padding-inline: 6rem;
     }
+    .menu_wrapper {
+        width: 10rem;
+    }
+   
 }
 
 
@@ -33,6 +41,7 @@
         flex-direction: column;
        
     }
+    
     .blog_container{
         width: 100%;
     }

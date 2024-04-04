@@ -10,7 +10,7 @@
 }
 @media screen and (min-width:1144px){
     .menu_container {
-        width: 100%;
+        width: fit-content;
     }
 }
 
@@ -18,11 +18,12 @@
   
     .menu_container{
         width: 100%;
-       
+        padding: 3rem;
         height: fit-content;
         overflow: hidden;
        
     }
+   
     
     
 
@@ -30,7 +31,9 @@
 @media screen and (max-width:570px) {
 .menu_container {
     padding: 1rem;
+
 }
+
 .heading {
     margin-block: 2rem;
     font-size: 2rem;

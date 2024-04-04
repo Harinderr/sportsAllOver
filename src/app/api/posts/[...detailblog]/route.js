@@ -16,7 +16,7 @@ export async function GET(req,res) {
   try {
    const updateviews = await prisma.post.update({
     where : {
-      id : id
+      slug : postSlug 
     },
     data : {
       views : { increment : 1}
@@ -24,7 +24,7 @@ export async function GET(req,res) {
    })
     const singlePost = await prisma.post.findUnique({
     
-        where : { id : id },
+        where : { slug : postSlug },
         include : {
           user : true
         }
@@ -33,7 +33,7 @@ export async function GET(req,res) {
     return NextResponse.json({result: singlePost})
     
   } catch (error) {
-    console.log('there is an error')
+    console.log('there is an error' + error)
     return NextResponse.json({result :"there is an error"})
   }
 }

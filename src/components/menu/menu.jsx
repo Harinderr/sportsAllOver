@@ -1,5 +1,6 @@
 import styles from "@/components/menu/menu.module.css"
 import Post from "../post/post"
+import Image from "next/image";
 import PopularPost from "../popularpost/popularpost"
 import { useEffect, useState } from "react";
 export default function Menu() {
@@ -24,9 +25,9 @@ export default function Menu() {
      return (
         <div className={styles.menu_container}>
             <h4 className={styles.heading}>Most Popular</h4>
-            <img src="" alt="" />
+           
             {data.map((item)=> {
-               return   <PopularPost id={item.id} src = {item.img} title={item.title} des={item.des} slug={item.slug}></PopularPost>
+               return   <PopularPost key={item.id} id={item.id} src = {item.img} title={item.title} des={item.des} slug={item.slug}></PopularPost>
             })}
           
            

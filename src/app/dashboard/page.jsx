@@ -18,7 +18,7 @@ import Logout from "@/components/logoutButton/logout";
            <div className="wrapper w-2/3 mx-auto  pt-10">
            <h1 >Welcome to the Dashboard {name}</h1> 
         <div className="profile flex flex-col gap-4 ">
-          {img ? <Image src={img}></Image> : <div className="profile_container w-28">
+          { img ? <Image src={img} alt="image unavailable"></Image> : <div className="profile_container w-28">
             <div className="box w-28 h-28  bg-red-300 text-black flex justify-center align-middle rounded-full text-8xl font-bold "><p className="drop-shadow-md">{firstLetter}</p></div>
             <h2 className="text-center mt-2 font-bold">{name}</h2></div>   }  
             

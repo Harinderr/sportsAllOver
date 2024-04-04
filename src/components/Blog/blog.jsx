@@ -43,34 +43,35 @@ export default function Blog({page,cat}) {
     }
     }
     // const {id, setId} = useContext(messageContext)
-    async function blogData() {
-     try{
-
-        let response = await fetch(`http://localhost:3000/api/blog?page=${page}&cat=${cat || '' }`)
-        if(response.ok) {
-            let {result ,count }= await response.json()
-        
-        setData(result)
-        setCount(count)
-        }
-     }
-     catch(err){
-        console.log('There is an error');
-     }   
-    // try {
-    //     const response = await fetch('')
-    // }
-    // catch(err){
-    //     throw new Error('there is an error')
-    // }
-}
+   
 
     
     
     useEffect(() => {
+        async function blogData() {
+            try{
+       
+               let response = await fetch(`http://localhost:3000/api/blog?page=${page}&cat=${cat || '' }`)
+               if(response.ok) {
+                   let {result ,count }= await response.json()
+               
+               setData(result)
+               setCount(count)
+               }
+            }
+            catch(err){
+               console.log('There is an error');
+            }   
+           // try {
+           //     const response = await fetch('')
+           // }
+           // catch(err){
+           //     throw new Error('there is an error')
+           // }
+       }
         blogData()
            
-    },[page])
+    },[page,cat])
 
    
     return (
@@ -81,7 +82,7 @@ export default function Blog({page,cat}) {
         
  
            { data.map((val)=> {
-            return  <Post  src={val.img} slug={val.slug} title={val.title} content={val.des} date ={val.createdAt} id = {val.id}  ></Post>
+            return  <Post key={val.id} src={val.img} slug={val.slug} title={val.title} content={val.des} date ={val.createdAt} id = {val.id}  ></Post>
            })}
         
        <div className={`${styles.pagination} flex justify-between`}>
@@ -90,7 +91,9 @@ export default function Blog({page,cat}) {
 
        </div>
         </div>
+        <div className={styles.menu_wrapper}>
         <Menu></Menu>
+        </div>
         </div>
        
         </div>

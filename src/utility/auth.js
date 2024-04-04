@@ -36,7 +36,7 @@ export const authoption = {
         if (!credentials?.email || !credentials.password) {
           // Any object returned will be saved in `user` property of the JWT
           console.log("there is an email pass error");
-          return "there is an email pass error";
+          return null;
         }
 
         const existingUser = await prisma.user.findUnique({
@@ -45,7 +45,7 @@ export const authoption = {
         
         if (!existingUser) {
           console.log("no user email");
-          return "no user email";
+          return null;
         }
         const passMatch = await compare(
           credentials.password,
@@ -53,7 +53,7 @@ export const authoption = {
         );
         if (!passMatch) {
           console.log("no user email");
-          return "pass did not match";
+          return null;
         }
         const output =  {
           id: existingUser.id,
