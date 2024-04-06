@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import styles from './category.module.css'
 import { useEffect, useState } from 'react'
  async function getData() {
-    const response = await fetch('http://localhost:3000/api/categories')
+    const response = await fetch('https://next-blog-sand-ten-63.vercel.app//api/categories')
     if(!response.ok) {
         throw 'three is an erro'
     }

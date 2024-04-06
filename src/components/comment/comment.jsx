@@ -30,7 +30,7 @@ const day = date.getDate();
 async   function handleLogin(e) {
     e.preventDefault();
     try {
-        const response = await fetch(`http://localhost:3000/api/comment?slug=${slug}`, {
+        const response = await fetch(`https://next-blog-sand-ten-63.vercel.app//api/comment?slug=${slug}`, {
             method : 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +53,7 @@ async   function handleLogin(e) {
 useEffect(() => {
   const commentData = async () => {
     try {
-        let response = await fetch(`http://localhost:3000/api/comment?slug=${slug}`)
+        let response = await fetch(`https://next-blog-sand-ten-63.vercel.app//api/comment?slug=${slug}`)
         if(response.ok) {
             const { comments } = await response.json()
             setComment(comments)
