@@ -13,9 +13,9 @@ export default function Footer() {
                 <div className={styles.navigation}>
                     <h3>Navigation</h3>
                     <Link href="/">Home</Link>
-                    <Link href="/" >Latest</Link>
+                    <Link href="#latest" >Latest</Link>
                     <Link href="/" >Reviews</Link>
-                    <Link href="/" >Most Popular</Link>
+                    <Link href="#menu_container" >Most Popular</Link>
                 </div>
                 <div className={styles.social}>
                     <h3>Social</h3>

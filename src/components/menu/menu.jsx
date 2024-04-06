@@ -23,7 +23,7 @@ export default function Menu() {
    getData()
   },[])
      return (
-        <div className={styles.menu_container}>
+        <div className={styles.menu_container} id="menu_container">
             <h4 className={styles.heading}>Most Popular</h4>
            
             {data.map((item)=> {
