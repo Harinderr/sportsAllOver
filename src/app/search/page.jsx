@@ -38,7 +38,7 @@ export default function SearchBlog({searchParams}) {
         <>
          <Search></Search>
          <div className={styles.container}>
-            <div className="wrapper px-48">
+            <div className="wrapper wrapper flex gap-4 flex-col sm:px-5 md:px-32 lg:px-40">
          {data.map((val)=> {
             return <Post key={val.id} src={val.img} slug={val.slug} title={val.title} content={val.des} date ={val.createdAt} id = {val.id}  ></Post>
         })}
