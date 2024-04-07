@@ -72,3 +72,8 @@
    
 
 }
+@media  screen and (max-width:400px) {
+    .container {
+        padding-inline: .5rem;
+    }
+}
