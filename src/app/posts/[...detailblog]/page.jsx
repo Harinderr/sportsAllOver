@@ -16,7 +16,7 @@ export default function DetailBlog() {
   useEffect(() => {
     async function getBlog(slug) {
       try {
-        const response = await fetch(` http://localhost:3000/api/posts/singlepost?slug=${slug}`);
+        const response = await fetch(` https://next-blog-sand-ten-63.vercel.ap/api/posts/singlepost?slug=${slug}`);
         if (response.ok) {
           const { result } = await response.json();
           setData(result);

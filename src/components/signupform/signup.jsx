@@ -37,7 +37,7 @@ export default function Signup() {
       try {
         const valid = await validationSchema.validate(formData,{abortEarly : false})
         if(valid) {
-          const response = await fetch(" http://localhost:3000/api/signup", {
+          const response = await fetch(" https://next-blog-sand-ten-63.vercel.ap/api/signup", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
