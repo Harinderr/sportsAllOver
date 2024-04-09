@@ -13,7 +13,7 @@ export default function TextEditor() {
 
     async function handleSubmit() {
         try{
-            const response  = await fetch(' https://next-blog-sand-ten-63.vercel.ap/api/blogdata',{
+            const response  = await fetch('https://next-blog-sand-ten-63.vercel.app/api/blogdata',{
                 method : "POST",
                 body : JSON.stringify(blogData)
             })

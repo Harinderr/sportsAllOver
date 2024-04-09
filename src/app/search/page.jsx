@@ -16,7 +16,7 @@ export default function SearchBlog({searchParams}) {
 
     const handleSearch = async () => {
         try {
-            const response = await fetch(` http://localhost:3000/api/search?postslug=${postslug}`)
+            const response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/search?postslug=${postslug}`)
             if(response.ok) {
                 const {result}= await response.json()
                 console.log(result)
@@ -32,13 +32,12 @@ export default function SearchBlog({searchParams}) {
     handleSearch()
     
    },[postslug])
-    
+    console.log(data)
    
     return (
         <>
          <Search></Search>
          <div className={styles.container}>
-            
             <div className="wrapper flex gap-4 flex-col sm:px-5 md:px-32 lg:px-40">
          {data.map((val)=> {
             return <Post key={val.id} src={val.img} slug={val.slug} title={val.title} content={val.des} date ={val.createdAt} id = {val.id}></Post> 

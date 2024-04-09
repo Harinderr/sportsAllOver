@@ -51,7 +51,7 @@ export default function Blog({page,cat}) {
         async function blogData() {
             try{
        
-               let response = await fetch(` https://next-blog-sand-ten-63.vercel.ap/api/blog?page=${page}&cat=${cat || '' }`)
+               let response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/blog?page=${page}&cat=${cat || '' }`)
                if(response.ok) {
                    let {result ,count }= await response.json()
                
