@@ -1,8 +1,14 @@
 .container form  input{
     width: 100%;
+
+}
+.container form {
+    margin-top: 2rem;
 }
 .container .comment_form {
     margin-top: 2rem;
+    height: 30rem;
+    overflow-y: scroll;
 }
 
 .container form input[type="text"]{
