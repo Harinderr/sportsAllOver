@@ -8,7 +8,8 @@ import ThemeBox from "@/provider/ThemeProvider";
 import { AuthProvider } from "@/provider/authProvider";
 const roboto = Roboto_Slab({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ['100','200','300',"400", "500", "600", '700','800'],
+  variable : '--font-roboto_slab'
 });
 
 export const metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet"/>  */}
       </head>
-      <body className={roboto.className}>
+      <body className={roboto.variable}>
         <AuthProvider>
           <ThemeContextProvider>
             <ThemeBox>

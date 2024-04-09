@@ -1,13 +1,29 @@
 import { useCallback, useEffect, useState } from "react";
 import styles from "./comment.module.css"
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 export default function Comment({ slug}) {
- 
+    const {data,status}= useSession()
+   
  
    const [formData, setFormData]= useState({})
    const[comment, setComment] = useState([])
    
+  const  commentData = async () => {
+    try {
+        let response = await fetch(` http://localhost:3000/api/comment?slug=${slug}`)
+        if(response.ok) {
+            const { comments } = await response.json()
+            comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setComment(comments)
+            console.log(comments)
+        }
+    }
+    catch (err) {
+        throw new Error('Data not fetched')
+    }
+}
 //    const firstLett comment.user?.name.slice(0,1).toUpperCase() 
    function handleChange(e) {
     let {name, value} = e.target;
@@ -29,8 +45,12 @@ const day = date.getDate();
 
 async   function handleLogin(e) {
     e.preventDefault();
+    if(status == 'unauthenticated'){
+        alert('login to comment')
+        return false
+    }
     try {
-        const response = await fetch(`https://next-blog-sand-ten-63.vercel.app//api/comment?slug=${slug}`, {
+        const response = await fetch(` http://localhost:3000/api/comment?slug=${slug}`, {
             method : 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -51,19 +71,7 @@ async   function handleLogin(e) {
 }
  
 useEffect(() => {
-  const commentData = async () => {
-    try {
-        let response = await fetch(`https://next-blog-sand-ten-63.vercel.app//api/comment?slug=${slug}`)
-        if(response.ok) {
-            const { comments } = await response.json()
-            setComment(comments)
-            console.log(comments)
-        }
-    }
-    catch (err) {
-        throw new Error('Data not fetched')
-    }
-}
+  
 
     commentData()
 
@@ -71,12 +79,13 @@ useEffect(() => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.comment_form}>
+            
                 <form onSubmit={(e)=> handleLogin(e)} action="" className="flex flex-row gap-2">
                     <label htmlFor="comment">Comment</label>
                     <input onChange={(e)=> handleChange(e)} type="text" name="comment" id="comment" placeholder="Enter you comment" className="outline-none"/>
                     <button type="submit" className="bg-blue-600 px-4">Post</button>
                 </form>
+                <div className={styles.comment_form}>
              { comment.map((item)=> {
                 return (<div className={styles.comment_container} key={item.id} >
                     <div className={styles.user}>

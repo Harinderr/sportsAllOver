@@ -24,7 +24,7 @@ export default function Write(){
          let slug = val.toLowerCase().split(' ').join('-')
          return slug
         }
-        const res = await fetch('https://next-blog-sand-ten-63.vercel.app//api/posts',{
+        const res = await fetch(' http://localhost:3000/api/posts',{
             method: 'POST',
             body : JSON.stringify({
                 title : title,
