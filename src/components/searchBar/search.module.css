@@ -1,23 +1,26 @@
 .search_container  {
 background-color: var(--bg);
-padding: 2rem;
+
 text-align: center;
 }
 
 .search_container input {
-    width: 60%;
+    width: 80%;
 }
 .search_container input[type='text'] {
  background-color: var(--softBg);
  outline: none;
  padding: 1rem;
- margin-top: 2rem;
+
  box-shadow:  0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
 
 }
+
+
 .search_container button {
     background-color: rgb(249, 72, 72);
     padding: 1rem;
+    width: 20%;
 }
 .search_container button:hover {
     background-color: rgb(245, 31, 31);

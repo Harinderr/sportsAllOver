@@ -11,7 +11,7 @@ export default function PopularPost({id, title,src, des,slug}) {
     return (
 
         
-        <div className={`${styles.post_container}`} key={id}>
+        <div className={`${styles.post_container} rounded-xl overflow-hidden`} key={id}>
           <div className={styles.content}>
           <Link href={`/posts/${id}?slug=${slug}`} className="font-bold">{title.substring(0,50)+'...'}</Link>
           <p className={styles.paragraph}>{des.substring(0,60)+'...'}</p>

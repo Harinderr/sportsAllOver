@@ -26,12 +26,15 @@ export default function Post({src,title,content,date,id,slug}) {
     
    
     return (
-        <div className={`${styles.post_container} w-full h-64 relative`} key={id}>
+        <div className={`${styles.post_container} w-full h-64 relative overflow-hidden rounded-xl `} key={id}>
           <div className={styles.content}>
             
           <Link href={`/posts/singlepost?slug=${slug}`} className="m-4">{titletextLimit}</Link>
           <p className={styles.paragraph}>{contentTextLimit} </p> </div>  
-            <Image alt="no image" src={src} width={300} height={300}></Image>
+          <div className="img_wrapper relative w-2/5">
+          <Image alt="no image" src={src} layout="fill" objectFit="cover" ></Image>
+          </div>
+           
             <div className={`${styles.time} absolute bottom-2 right-2`}> <i className="fa-solid fa-clock"></i> {simpledate}</div>
         </div>
     )

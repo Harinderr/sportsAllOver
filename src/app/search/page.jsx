@@ -9,6 +9,7 @@ import styles from "./search.module.css"
 
 export default function SearchBlog({searchParams}) {
     const { postslug } = searchParams
+    
     const [data, setData] = useState([])
 
    
@@ -16,7 +17,8 @@ export default function SearchBlog({searchParams}) {
 
     const handleSearch = async () => {
         try {
-            const response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/search?postslug=${postslug}`)
+            
+            const response = await fetch(`http://localhost:3000/api/search?postslug=${postslug}`)
             if(response.ok) {
                 const {result}= await response.json()
                 console.log(result)

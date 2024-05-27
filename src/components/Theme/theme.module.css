@@ -2,10 +2,12 @@
 
 .container {
     margin-left: 1rem;
+  border-radius: 35%;
+  
 }
 
 .circle {
     background-color: black;
-    
+
 
 }

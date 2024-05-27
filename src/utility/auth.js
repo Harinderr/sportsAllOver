@@ -59,6 +59,7 @@ export const authoption = {
           id: existingUser.id,
           username: existingUser.name,
           email: existingUser.email,
+          
         }
         
         return output;
@@ -70,7 +71,8 @@ export const authoption = {
      if(user){
       return {
         ...token,
-        username : user.username
+        username : user.username,
+        role : user.role
       }
      }
      return token
@@ -82,7 +84,8 @@ export const authoption = {
         ...session,
         user : {
           ...session.user,
-          username : token.username
+          username : token.username,
+          role : token.role
         }
       }
     

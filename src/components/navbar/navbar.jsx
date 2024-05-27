@@ -21,7 +21,8 @@ export default function Navbar() {
    const handleProfile = () => {
         setIsopen(!isOpen)
    }
-   const firstLetter = data?.user.username.slice(0,1).toUpperCase() || data?.user.name.slice(0,1).toUpperCase()
+   const firstLetter = (data?.user?.username?.slice(0, 1).toUpperCase()) || (data?.user?.name?.slice(0, 1).toUpperCase()) || '';
+
    
 
    useEffect(()=> {
@@ -48,11 +49,15 @@ else {
                 <Theme className={styles.nav_link}></Theme>
                 {
                     (status === 'authenticated') ? (
-                        // <div className={styles.nav_link}>
-                        // <div style={{cursor:'pointer'}} onClick={()=> signOut()}>Logout</div>
-                        // <Link href={'/write'}>Write</Link>
-                        // </div>
-                <>       <div onClick={handleProfile} className="profile relative pl-4 h-8 flex flex-row ">
+                    <>    <div className={styles.nav_link}>
+                        {/* <div style={{cursor:'pointer'}} onClick={()=> {
+                            signOut()
+                            router.push('/')
+
+                        }}>Logout</div> */}
+                 { data?.user?.email  == 'Dave@gmail.com'   && <Link href={'/write'}>Write</Link>}
+                        </div>
+                       <div onClick={handleProfile} className="profile relative pl-4 h-8 flex flex-row ">
             <div className="profile_container w-10">
             <div className="box w-8 h-8  bg-red-300 cursor-pointer text-black flex justify-center align-middle rounded-full text-xl font-bold "><p className="drop-shadow-md">{firstLetter}</p></div>
             <h2 className="text-center mt-2 font-bold">{}</h2></div>   

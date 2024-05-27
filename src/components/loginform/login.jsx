@@ -35,10 +35,8 @@ const router = useRouter()
             
         })
         if(signinData.error){
-          
           setCredentialError(true)
-          
-        }
+          }
         else {
           router.push('/dashboard')
         }
@@ -61,6 +59,7 @@ const router = useRouter()
   return (
     <div className={styles.login_wrapper}>
       <div className={styles.login_container}>
+      <div className="text text-center text-2xl font-bold">LOGIN</div>
         <form
           onSubmit={(e) => onSubmit(e)}
           action=""
@@ -73,6 +72,7 @@ const router = useRouter()
           <label htmlFor="email">Email</label>
           <input
             onChange={(e) => handleChange(e)}
+            className="rounded-full"
             type="email"
             name="email"
             id="email"
@@ -83,6 +83,7 @@ const router = useRouter()
           <label htmlFor="password">Password</label>
           <input
             onChange={(e) => handleChange(e)}
+            className="rounded-full"
             type="password"
             name="password"
             id="password"
@@ -92,7 +93,9 @@ const router = useRouter()
        {error.password && <div className="text-red-700">{error.password}</div> }
 
        {credentialError &&  <div className="credentialerror bg-red-700/50 rounded-xl mt-8 h-12 font-bold text-center text-lg">Invalid credentials</div> }
-          <button type="submit">
+          <button type="submit"
+          className="rounded-full"
+          >
          Login
           </button>
 
@@ -109,7 +112,7 @@ const router = useRouter()
 
         <p className="text-center">OR</p>
         <div className={`${styles.authLinks} cursor-pointer`}>
-          <div className={styles.google} onClick={() =>{ signIn("google") 
+          <div className={`${styles.google} rounded-full`} onClick={() =>{ signIn("google") 
         
         }}>
             {" "}

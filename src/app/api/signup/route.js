@@ -41,7 +41,8 @@ export async function GET(req,res){
         data : {
             name :payload.username,
             email : payload.email,
-            password : hashPass
+            password : hashPass,
+            role : 'user'
             
         }
     })

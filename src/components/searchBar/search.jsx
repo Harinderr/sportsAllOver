@@ -16,9 +16,13 @@ export default function Search() {
      }
   
     return (
-        <div className={styles.search_container}>
-           <label htmlFor="search"></label> <input onChange={handleChange} type="text" id="search" name="search" placeholder="Search for article"/>
+        <div className={`${styles.search_container} py-20`}>
+            <div className="search_wrapper w-3/5 mx-auto overflow-hidden rounded-full ">
+
+             <input onChange={handleChange} type="text" id="search" name="search" placeholder="Search for article"/>
             <button onClick={handleSearch}>Search</button>
+            </div>
+          
         </div>
     )
 }

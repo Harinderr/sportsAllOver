@@ -6,7 +6,7 @@
 .login_container {
     background-color: var(--softBg);
     padding-top: 2rem;
-    width: 65%;
+    width: 55%;
     margin: auto;
 }
 .login_container form {
@@ -20,7 +20,11 @@
     margin-block: 1rem;
     text-transform: capitalize;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
+}
+
+.login_container form input:focus {
+    outline: 2px solid orange;
 }
 
 

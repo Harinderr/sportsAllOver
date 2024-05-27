@@ -12,7 +12,7 @@ export default function Comment({ slug}) {
    
   const  commentData = async () => {
     try {
-        let response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/comment?slug=${slug}`)
+        let response = await fetch(`http://localhost:3000/api/comment?slug=${slug}`)
         if(response.ok) {
             const { comments } = await response.json()
             comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -50,7 +50,7 @@ async   function handleLogin(e) {
         return false
     }
     try {
-        const response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/comment?slug=${slug}`, {
+        const response = await fetch(`http://localhost:3000/api/comment?slug=${slug}`, {
             method : 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -82,12 +82,12 @@ useEffect(() => {
             
                 <form onSubmit={(e)=> handleLogin(e)} action="" className="flex flex-row gap-2">
                     <label htmlFor="comment">Comment</label>
-                    <input onChange={(e)=> handleChange(e)} type="text" name="comment" id="comment" placeholder="Enter you comment" className="outline-none"/>
-                    <button type="submit" className="bg-blue-600 px-4">Post</button>
+                    <input onChange={(e)=> handleChange(e)} type="text" name="comment" id="comment" placeholder="Enter you comment" className="outline-none rounded-xl"/>
+                    <button type="submit" className="bg-blue-600 px-4 rounded-xl">Post</button>
                 </form>
                 <div className={styles.comment_form}>
              { comment.map((item)=> {
-                return (<div className={styles.comment_container} key={item.id} >
+                return (<div className={`${styles.comment_container} rounded-xl `}key={item.id} >
                     <div className={styles.user}>
                   { item.user?.image ? <Image src={item.user.image} alt="Image Unavailable"></Image> :  <div className="box w-8 h-8  bg-red-300 text-black flex justify-center align-middle rounded-full text-md font-bold "><p className="drop-shadow-md">{item.user.name.slice(0,1).toUpperCase()}</p></div>}
                    <div className="detail">

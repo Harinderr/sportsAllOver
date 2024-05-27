@@ -37,7 +37,7 @@ export default function Signup() {
       try {
         const valid = await validationSchema.validate(formData,{abortEarly : false})
         if(valid) {
-          const response = await fetch("https://next-blog-sand-ten-63.vercel.app/api/signup", {
+          const response = await fetch("http://localhost:3000/api/signup", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -64,8 +64,9 @@ export default function Signup() {
   return (
     <div className={styles.login_wrapper}>
       <div className={styles.login_container}>
-        <form
-          onSubmit={(e) => handleLogin(e)}
+        <div className="text text-center text-2xl font-bold">REGISTER</div>
+        <form 
+        onSubmit={(e) => handleLogin(e)}
           action=""
           className="flex flex-col"
         >
@@ -74,6 +75,7 @@ export default function Signup() {
               <label htmlFor="username">Username</label>
               <input
                 onChange={(e) => handleChange(e)}
+                className="rounded-full"
                 type="text"
                 name="username"
                 id="username"
@@ -85,6 +87,7 @@ export default function Signup() {
           <label htmlFor="email">Email</label>
           <input
             onChange={(e) => handleChange(e)}
+            className="rounded-full"
             type="email"
             name="email"
             id="email"
@@ -95,6 +98,7 @@ export default function Signup() {
           <label htmlFor="password">Password</label>
           <input
             onChange={(e) => handleChange(e)}
+            className="rounded-full"
             type="password"
             name="password"
             id="password"
@@ -103,7 +107,7 @@ export default function Signup() {
           />
            {error.password && <div className="text-red-700">{error.password}</div> }
 
-          <button type="submit" onClick={(e)=> handleLogin(e)}>
+          <button type="submit" className="rounded-full" onClick={(e)=> handleLogin(e)}>
             Signup
           </button>
 
@@ -118,7 +122,7 @@ export default function Signup() {
 
         <p className="text-center">OR</p>
         <div className={`${styles.authLinks} cursor-pointer`}>
-          <div className={styles.google} onClick={() =>{ signIn("google") 
+          <div className={`${styles.google} rounded-full `}onClick={() =>{ signIn("google") 
         
         }}>
             {" "}
