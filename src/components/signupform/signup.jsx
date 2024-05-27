@@ -46,6 +46,7 @@ export default function Signup() {
           });
           if (response.ok) {
             let result = await response.json();
+            router.push('/form/login')
             setUserStatus('login')
           }
         }
