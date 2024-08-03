@@ -22,8 +22,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
      
-<Script async src="https://www.googletagmanager.com/gtag/js?id=G-T2PG4Y5BJY"></Script>
-<Script>
+<Script async  strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-T2PG4Y5BJY"></Script>
+<Script id="google-analytics"
+ strategy="afterInteractive"
+>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments)}
   gtag('js', new Date());
