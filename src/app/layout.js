@@ -4,7 +4,7 @@ import "./globals.css";
 import { Roboto_Slab } from "next/font/google";
 import { ThemeContextProvider } from "@/contextapi/ThemeContext";
 import ThemeBox from "@/provider/ThemeProvider";
-
+import Script from "next/script";
 import { AuthProvider } from "@/provider/authProvider";
 const roboto = Roboto_Slab({
   subsets: ["latin"],
@@ -22,14 +22,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
      
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2PG4Y5BJY"></script>
-<script>
+<Script async src="https://www.googletagmanager.com/gtag/js?id=G-T2PG4Y5BJY"></Script>
+<Script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments)}
   gtag('js', new Date());
 
   gtag('config', 'G-T2PG4Y5BJY');
-</script>
+</Script>
       
       </head>
       <body className={roboto.variable}>
