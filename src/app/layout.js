@@ -6,10 +6,11 @@ import { ThemeContextProvider } from "@/contextapi/ThemeContext";
 import ThemeBox from "@/provider/ThemeProvider";
 import Script from "next/script";
 import { AuthProvider } from "@/provider/authProvider";
+
 const roboto = Roboto_Slab({
   subsets: ["latin"],
-  weight: ['100','200','300',"400", "500", "600", '700','800'],
-  variable : '--font-roboto_slab'
+  weight: ['100', '200', '300', "400", "500", "600", '700', '800'],
+  variable: '--font-roboto_slab'
 });
 
 export const metadata = {
@@ -21,18 +22,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-     
-<Script async  strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-T2PG4Y5BJY"></Script>
-<Script id="google-analytics"
- strategy="afterInteractive"
->
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)}
-  gtag('js', new Date());
-
-  gtag('config', 'G-T2PG4Y5BJY');
-</Script>
-      
+        <Script async strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-T2PG4Y5BJY"></Script>
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-T2PG4Y5BJY');
+            `.replace(/'/g, '&#39;'),
+          }}
+        />
       </head>
       <body className={roboto.variable}>
         <AuthProvider>
