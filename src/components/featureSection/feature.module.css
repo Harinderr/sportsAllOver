@@ -1,109 +1,31 @@
 
-.heading {
-     font-size:  3rem;
-     font-weight: 800;
-     line-height: 1.2;
-    
-}
 
-.pg {
-    font-size: 1rem;
-    line-height: 2;
+.features {
+  background: linear-gradient(rgb(0, 0, 0, 0.8), rgb(0, 0, 0, 0.8)),
+    url("/landing.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 160%;
+  color: var(--textColor);
 
-}
-
-.btn {
-    border: 1px solid;
-    background-color:var(--bg);
-    color: var(--textColor);
-    padding: .5rem;
-    border-radius: 5px;
-    margin-top: 1rem;
-    
-}
-
-.btn:hover {
-    background-color: var(--textColor);
-    color: var(--bg);
-}
-
-.image {
-    position: absolute;
-    right: 0;
-}
- 
-
-
-
-
-.features{
-    background-color: var(--bg);
-    color: var(--textColor);
-padding-top: 5rem;
-  display: flex;
-  flex-direction: row;
   gap: 1rem;
-   height: 35rem;
+  height: 40rem;
+}
+.heading {
+  font-family: var(--font-bebas_neue);
 }
 
-.right {
-   width: 400px;
-   height: 100%;
-  
-   
+@media screen and (max-width:750px) {
+  .features {
+    background-size: 240%;
+    height: 30rem;
+  }
 }
 
-@media  screen and (max-width:992px) {
-        .features {
-            padding: 1.5rem;
-            height: 30rem;
-        }
-
-     .heading {
-        font-size: 2.5rem;
-     }
-     .pg {
-        font-size: .8rem;
-     }
-     .btn {
-        font-size: .8rem;
-        font-weight: 600;
-     }
+@media screen and (max-width:400px) {
+  .features {
+    background-size: 400%;
+    height: 30rem;
+  }
 }
-
-@media  screen and (max-width:659px) {
-     .heading {
-        font-size: 2rem;
-     }
-     .pg {
-        font-size: .6rem;
-     }
-     .btn {
-        font-size: .6rem;
-     }
-     .right {
-        padding-right: 1rem;
-        padding-left: .2rem;
-     }
-     .image_container {
-      display: none;
-     }
-
-     .features {
-        padding: 2rem;
-     height: fit-content;
-        
-     }
-     
-
-    
-   
-     .right{
-        width: 100%;
-        height: fit-content;
-        padding-inline: 2rem;
-        
-     }
-}
-
-

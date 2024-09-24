@@ -1,5 +1,5 @@
 .search_container  {
-background-color: var(--bg);
+
 
 text-align: center;
 }
@@ -18,7 +18,7 @@ text-align: center;
 
 
 .search_container button {
-    background-color: rgb(249, 72, 72);
+    
     padding: 1rem;
     width: 20%;
 }

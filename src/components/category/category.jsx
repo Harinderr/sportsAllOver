@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import styles from './category.module.css'
 import { useEffect, useState } from 'react'
  async function getData() {
-    const response = await fetch('https://next-blog-sand-ten-63.vercel.app/api/categories')
+    const response = await fetch('http://localhost:3000/api/categories')
     if(!response.ok) {
         throw 'three is an erro'
     }
@@ -27,10 +27,10 @@ export default  function Category() {
     },[])
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} mx-auto w-2/3 mt-8  flex justify-around flex-wrap  flex-row gap-2 bg-bgBlack`}>
         {
             data.map(item => {
-                return <div key={item.id}  onClick={()=> router.push(`/blog?page=${1}&cat=${item.slug}`)}>{item.slug}</div>
+                return <div className='bg-hoverBg cursor-pointer hover:bg-inputBg  px-3 py-2 rounded-lg ' key={item.id}  onClick={()=> router.push(`/blog?page=${1}&cat=${item.slug}`)}>{item.slug}</div>
             })
         }
        

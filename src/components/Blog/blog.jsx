@@ -2,101 +2,70 @@
 import Post from "@/components/post/post"
 import Menu from "../menu/menu"
 import styles from "@/components/Blog/blog.module.css"
-import { useContext, useEffect, useState } from "react"
-import { usePathname } from 'next/navigation'
+import { useRef, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-// import { messageContext } from "@/contextapi/messageContext"
-export default function Blog({page,cat}) {
-   
-    const [data ,setData] = useState([])
-    const [count , setCount] = useState(3)
-    const pathname = usePathname()
-   
-    let previous = page == 1 ? false : true;
-    let next = page == Math.ceil(count/3)  ? false : true  ;
-    const router = useRouter()
-    
-     function handlePagination(path,page,operator){
-      
-        if(operator=='add'){
-            page += 1
-            path == '/' &&   router.push(`/?page=${page}`)  
-            path == '/blog' &&  router.push(`/blog?page=${page}&cat=${cat}`)
-        
-           
-        }
-        if(operator =='minus') {
-          if(page==1){
-            path == '/' &&   router.push(`/?page=${1}`)  
-            path == '/blog' &&  router.push(`/blog?page=${1}&cat=${cat}`)
-        
-        
 
-          } 
-          else {
-          page -= 1
-          path == '/' &&   router.push(`/?page=${page}`)  
-         path == '/blog' &&  router.push(`/blog?page=${page}&cat=${cat}`)
-        
-          
-        }
-    }
-    }
-    // const {id, setId} = useContext(messageContext)
-   
+export default function Blog() {
+    const [data, setData] = useState([]);
+    const [page, setPage] = useState(1);
+    const [disabled, setDisabled] = useState(false);
+    const [count, setCount] = useState(4);
+    
+    const router = useRouter();
+    const isFirstRender = useRef(true);
 
-    
-    
-    useEffect(() => {
-        async function blogData() {
-            try{
-       
-               let response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/blog?page=${page}&cat=${cat || '' }`)
-               if(response.ok) {
-                   let {result ,count }= await response.json()
-               
-               setData(result)
-               setCount(count)
-               }
+    async function blogData(page) {
+        try {
+            let response = await fetch(`http://localhost:3000/api/blog?page=${page}`);
+            if (response.ok) {
+                let { result, count } = await response.json();
+                
+                setData(prev => [...prev, ...result]);
+                setCount(count);
             }
-            catch(err){
-               console.log('There is an error');
-            }   
-           // try {
-           //     const response = await fetch('')
-           // }
-           // catch(err){
-           //     throw new Error('there is an error')
-           // }
-       }
-        blogData()
-           
-    },[page,cat])
-
-   
-    return (
-       <div className={styles.main_container}>
-        <h1 className=" pl-16 py-10 " id="latest">LATEST</h1>
-        <div className={styles.wrapper}>
-         <div className={`${styles.blog_container} flex flex-col w-2/3  gap-4 flex-wrap`}>
-        
- 
-           { data.map((val)=> {
-            return  <Post key={val.id} src={val.img} slug={val.slug} title={val.title} content={val.des} date ={val.createdAt} id = {val.id}  ></Post>
-           })}
-        
-       <div className={`${styles.pagination} flex justify-between`}>
-           <button className="bg-red-600 text-white p-2 rounded-xl " disabled={!previous} onClick={(e)=> handlePagination(pathname,page,'minus')} >Previous</button>
-           <button className="bg-red-600 text-white p-2 rounded-xl " disabled={!next} onClick={(e)=> handlePagination(pathname,page,'add')} >Next</button>
-
-       </div>
-        </div>
-        <div className={styles.menu_wrapper}>
-        <Menu></Menu>
-        </div>
-        </div>
-       
-        </div>
-       
-    )
+        } catch (err) {
+            console.log('There is an error', err);
+        }
     }
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        blogData(page);
+    }, [page]);
+
+    return (
+        <div className=" bg-bgBlack w-full px-4 py-10">
+            <h1 className="text-4xl font-bold text-center py-10" id="latest">LATEST</h1>
+            
+            {/* Responsive wrapper for blog posts */}
+            <div className="flex flex-wrap justify-center gap-6">
+                {data.map((val) => (
+                    <Post 
+                        key={val.id} 
+                        src={val.img} 
+                        slug={val.slug} 
+                        title={val.title} 
+                        content={val.des} 
+                        date={val.createdAt} 
+                        id={val.id} 
+                        catSlug={val.catSlug}
+                    />
+                ))}
+            </div>
+
+            {/* Button Wrapper */}
+            <div className="flex justify-center py-8">
+                <button 
+                    disabled={Math.ceil(count / 4) === page}
+                    onClick={() => setPage(prev => prev + 1)}
+                    className={`px-4 py-2 rounded-lg text-white ${Math.ceil(count / 4) === page ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700 cursor-pointer'}`}
+                >
+                    View More
+                </button>
+            </div>
+        </div>
+    );
+}

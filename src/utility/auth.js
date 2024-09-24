@@ -1,3 +1,4 @@
+
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -59,9 +60,10 @@ export const authoption = {
           id: existingUser.id,
           username: existingUser.name,
           email: existingUser.email,
+          image : existingUser.image
           
         }
-        
+        console.log(output)
         return output;
       },
     }),
@@ -72,7 +74,8 @@ export const authoption = {
       return {
         ...token,
         username : user.username,
-        role : user.role
+        role : user.role,
+        image : user.image
       }
      }
      return token
@@ -85,7 +88,8 @@ export const authoption = {
         user : {
           ...session.user,
           username : token.username,
-          role : token.role
+          role : token.role,
+          image : token.image
         }
       }
     

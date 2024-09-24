@@ -6,14 +6,14 @@
 .login_container {
     background-color: var(--softBg);
     padding-top: 2rem;
-    width: 55%;
+    
     margin: auto;
 }
 .login_container form {
     width: 100%;
    
     margin-inline: auto;
-    padding: 2rem;
+   
     
 }
 .login_container form label {
@@ -53,11 +53,7 @@
     margin-top: 1rem;
 }
 
-.authLinks {
-    padding: 2rem;
-  
-   
-}
+
 .authLinks .google .google_box {
     display: flex;
     flex-direction: row;

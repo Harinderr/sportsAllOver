@@ -1,6 +1,6 @@
 
 .main_container {
-    background-color: var(--bg);
+    background-color: #221f20;
     height: auto;
 }
 
@@ -16,7 +16,7 @@
 
 .blog_container {
     padding-inline: 3rem;
-    width: 70%;
+    width: 100%;
 
 }
 

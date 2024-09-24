@@ -57,77 +57,82 @@ const router = useRouter()
  
   
   return (
-    <div className={styles.login_wrapper}>
-      <div className={styles.login_container}>
-      <div className="text text-center text-2xl font-bold">LOGIN</div>
-        <form
-          onSubmit={(e) => onSubmit(e)}
-          action=""
-          className="flex flex-col"
+    <div className={`${styles.login_wrapper} flex items-center justify-center min-h-screen p-4`}>
+    <div className={`${styles.login_container} bg-white shadow-lg rounded-xl p-6 md:p-12 max-w-lg w-full`}>
+      <div className="text-center text-3xl md:text-4xl font-bold text-white">LOGIN</div>
+      
+      <form
+        onSubmit={(e) => onSubmit(e)}
+        className="flex flex-col gap-2 xs:p-8  "
+      >
+        <div className="flex flex-col space-y-1">
+        <label htmlFor="email" className="text-lg font-semibold">Email</label>
+        <input
+          onChange={(e) => handleChange(e)}
+          className="rounded-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+        </div>
+        {error.email && <div className="text-red-700">{error.email}</div>}
+        <div  className="flex flex-col space-y-1">
+        <label htmlFor="password" className="text-lg font-semibold">Password</label>
+        <input
+          onChange={(e) => handleChange(e)}
+          className="rounded-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter your password"
+          required
+        />
+        </div>
+        {error.password && <div className="text-red-700">{error.password}</div>}
+  
+        {credentialError && (
+          <div className="bg-red-700/50 rounded-xl mt-4 h-12 font-bold text-center text-white text-lg flex items-center justify-center">
+            Invalid credentials
+          </div>
+        )}
+  
+        <button
+          type="submit"
+          className="rounded-full bg-blue-700 text-white py-3  hover:bg-blue-600 transition-all duration-300"
         >
-          
-            
-    
-          
-          <label htmlFor="email">Email</label>
-          <input
-            onChange={(e) => handleChange(e)}
-            className="rounded-full"
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter you email"
-            required
+          Login
+        </button>
+  
+        <div className={`${styles.links} text-center mt-4`}>
+          Click here to{' '}
+          <span>
+            <Link className="text-blue-700 cursor-pointer font-semibold" href={'/form/signup'}>
+              Signup
+            </Link>
+          </span>
+        </div>
+      </form>
+  
+      <p className="text-center text-gray-600 mt-6">OR</p>
+      
+      <div className={`${styles.authLinks} flex justify-center mt-4`}>
+        <div
+          className={`${styles.google} bg-gray-100 hover:bg-gray-200 transition-all duration-300 cursor-pointer rounded-full py-3 px-6 flex items-center space-x-3`}
+          onClick={() => { signIn("google") }}
+        >
+          <Image
+            alt="Google"
+            src="/google.png"
+            height={30}
+            width={30}
           />
-           {error.email && <div className="text-red-700">{error.email}</div> }
-          <label htmlFor="password">Password</label>
-          <input
-            onChange={(e) => handleChange(e)}
-            className="rounded-full"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter you name"
-            required
-          />
-       {error.password && <div className="text-red-700">{error.password}</div> }
-
-       {credentialError &&  <div className="credentialerror bg-red-700/50 rounded-xl mt-8 h-12 font-bold text-center text-lg">Invalid credentials</div> }
-          <button type="submit"
-          className="rounded-full"
-          >
-         Login
-          </button>
-
-          <div className={styles.links}>
-            click here to{" "}
-            <span>
-               
-            <Link className="text-blue-700 cursor-pointer" href={'/form/signup'} >Signup</Link>
-              
-          
-            </span>
-          </div>
-        </form>
-
-        <p className="text-center">OR</p>
-        <div className={`${styles.authLinks} cursor-pointer`}>
-          <div className={`${styles.google} rounded-full`} onClick={() =>{ signIn("google") 
-        
-        }}>
-            {" "}
-            <div className={styles.google_box}>
-              <Image
-                alt="no image"
-                src={"/google.png"}
-                height={40}
-                width={40}
-              ></Image>
-              Sign in with Google
-            </div>
-          </div>
+          <span className="font-semibold text-white text-sm xs:text-base ">Sign in with Google</span>
         </div>
       </div>
     </div>
+  </div>
+  
   );
 }

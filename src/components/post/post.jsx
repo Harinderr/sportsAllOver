@@ -1,41 +1,101 @@
+'use client'
 import Image from "next/image"
 import Link from "next/link"
 import styles from "@/components/post/post.module.css"
+import { FaRegBookmark } from "react-icons/fa";
+import { useContext, useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { checkBookmark } from "@/lib/utils";
+import { BookmarkContext } from "@/contextapi/bookmarksProvider";
 
-export default function Post({src,title,content,date,id,slug}) {
-    const dateobj = new Date(date);
-    const todayDate = new Date()
-    let simpledate;
-    //   dateobj.toISOString().split('T')[0];
-    const titletextLimit = title.substring(0,50) + '...';
-    const contentTextLimit = content.substring(0,80) + '...';
-    (function time() {
-       let year =  dateobj.getFullYear()
-       let month = dateobj.getMonth()
-       let date = dateobj.getDate()
-       if(todayDate.getDate() == date && todayDate.getMonth() == month && todayDate.getFullYear() == year ){
-          return simpledate = 'Today' 
-       }
-      else  if((todayDate.getDate() - 1) == date && todayDate.getMonth() == month && todayDate.getFullYear() == year ){
-         return   simpledate = 'Yesterday' 
-       }
-       else {
-         return simpledate =  dateobj.toISOString().split('T')[0];
-       }
-    })()
-    
-   
-    return (
-        <div className={`${styles.post_container} w-full h-64 relative overflow-hidden rounded-xl `} key={id}>
-          <div className={styles.content}>
-            
-          <Link href={`/posts/singlepost?slug=${slug}`} className="m-4">{titletextLimit}</Link>
-          <p className={styles.paragraph}>{contentTextLimit} </p> </div>  
-          <div className="img_wrapper relative w-2/5">
-          <Image alt="no image" src={src} layout="fill" objectFit="cover" ></Image>
-          </div>
-           
-            <div className={`${styles.time} absolute bottom-2 right-2`}> <i className="fa-solid fa-clock"></i> {simpledate}</div>
+export default function Post(
+  {src,title,content,date,id,slug,catSlug}
+) {
+  const [bookmark, setBookmark] = useState(false)
+  const {bookmarks, setBookmarks} = useContext(BookmarkContext)
+  const {data, status} = useSession()
+  const email = data?.user.email
+
+  useEffect(() => {
+    // Check if the post is already bookmarked when the component mounts
+    setBookmark(checkBookmark(bookmarks, id))
+  }, [bookmarks, id])
+
+  const handleBookMark = async (val) => {
+    // Optimistic UI update
+    setBookmark((prev) => !prev)
+
+    try {
+      const isBookmarked = bookmarks.some((i) => i.postId === val)
+      
+      // Toggle based on current bookmark state
+      if (bookmark && isBookmarked) {
+        // If currently bookmarked, delete the bookmark
+        let res = await fetch('http://localhost:3000/api/bookmarks', {
+          method: 'DELETE',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({val, email})
+        })
+
+        if (res.ok) {
+          // Filter out the deleted bookmark from the bookmarks context
+          setBookmarks((prev) => prev.filter((i) => i.postId !== val))
+        } else {
+          // If the request fails, revert bookmark state
+          setBookmark(true)
+        }
+      } else {
+        // If not bookmarked, add the bookmark
+        let res = await fetch(`http://localhost:3000/api/bookmarks`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({val, email})
+        })
+
+        if (res.ok) {
+          const o = await res.json()
+          setBookmarks((prev) => [...prev, o.result])
+        } else {
+          // If the request fails, revert bookmark state
+          setBookmark(false)
+        }
+      }
+    } catch (error) {
+      console.error(error)
+      // Revert bookmark state in case of an error
+      setBookmark((prev) => !prev)
+    }
+  }
+
+  const titletextLimit = title && title.substring(0, 50) + '...'
+  const contentTextLimit = content && content.substring(0, 80) + '...'
+
+  return (
+    <div className="postContainer sm:h-72 w-56 h-44 relative group rounded-md">
+      <div className="z-10 text-xs rounded-full flex flex-row justify-between items-center gap-2 p-1 absolute right-1 top-1">
+        <span className="border-2 px-1 border-white rounded-full">
+          {catSlug}
+        </span>
+        <FaRegBookmark
+          onClick={() => handleBookMark(id)}
+          className={`hover:scale-150 overflow-hidden cursor-pointer ${bookmark && 'bg-blue-500'}`} // Optimistic UI change
+        />
+      </div>
+      <Image className="z-1" src={src} layout="fill" objectFit="cover" alt="no-image"></Image>
+      <div className="z-10 text-gray-200 absolute w-full h-auto bottom-0 left-0 bg-gradient-to-t from-bgBlack via-gray-900/90 to-transparent">
+        <div className="boxWrapper w-full max-h-full p-4 overflow-hidden">
+          <Link className="text-wrap h-auto font-semibold text-base md:text-xl hover:underline" href={`/posts/singlepost?slug=${slug}`}>
+            {titletextLimit}
+          </Link>
+          <p className="text-sm text-white opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-20 translate-all duration-1000">
+            {contentTextLimit}
+          </p>
         </div>
-    )
+      </div>
+    </div>
+  )
 }

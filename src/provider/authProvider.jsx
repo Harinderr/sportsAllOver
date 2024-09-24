@@ -1,7 +1,8 @@
 'use client'
 import { SessionProvider } from "next-auth/react"
+import { useEffect } from "react"
 export const AuthProvider = ({children}) => {
-    return (
+ return (
         <SessionProvider>
                 {children}
             </SessionProvider>

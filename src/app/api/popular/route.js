@@ -6,7 +6,7 @@ export const GET = async (req,res) => {
  
      try{
         const topThreePosts = await prisma.post.findMany({
-            take: 3, // Take the top three posts
+            take: 4, // Take the top three posts
             orderBy: {
               views: 'desc' // Order by views in descending order
             }

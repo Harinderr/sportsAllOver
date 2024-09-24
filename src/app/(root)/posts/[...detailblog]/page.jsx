@@ -16,7 +16,7 @@ export default function DetailBlog() {
   useEffect(() => {
     async function getBlog(slug) {
       try {
-        const response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/posts/singlepost?slug=${slug}`);
+        const response = await fetch(`http://localhost:3000/api/posts/singlepost?slug=${slug}`);
         if (response.ok) {
           const { result } = await response.json();
           setData(result);
@@ -64,14 +64,12 @@ export default function DetailBlog() {
           </div>
           <div className={styles.content}>
             <Image src={data?.img} alt="no image" height={300} width={300} />
-            <p className={styles.description}>{data.des}</p>
+            <p className={`${styles.description} white-space: pre-wrap`}>{data.des}</p>
           </div>
-          <Comment slug={slug} />
         </div>
-        <div className={styles.menu_Wrapper}>
-          <Menu />
-        </div>
+       
       </div>
+          <Comment slug={slug} />
     </div>
   );
 }

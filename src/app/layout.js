@@ -1,17 +1,24 @@
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
-import "./globals.css";
-import { Roboto_Slab } from "next/font/google";
+import './globals.css'
+import { Roboto_Slab , Bebas_Neue } from "next/font/google";
 import { ThemeContextProvider } from "@/contextapi/ThemeContext";
 import ThemeBox from "@/provider/ThemeProvider";
 import Script from "next/script";
 import { AuthProvider } from "@/provider/authProvider";
+import { BookmarksProvider } from "@/contextapi/bookmarksProvider";
 
 const roboto = Roboto_Slab({
   subsets: ["latin"],
   weight: ['100', '200', '300', "400", "500", "600", '700', '800'],
   variable: '--font-roboto_slab'
 });
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: [ "400"],
+  variable: '--font-bebas_neue'
+});
+
 
 export const metadata = {
   title: "Blog App",
@@ -36,13 +43,15 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={roboto.variable}>
+      <body className={`${roboto.variable} ${bebas.variable}`}>
         <AuthProvider>
           <ThemeContextProvider>
             <ThemeBox>
-              <Navbar />
+            <BookmarksProvider>
+             <Navbar />
               {children}
               <Footer />
+            </BookmarksProvider>
             </ThemeBox>
           </ThemeContextProvider>
         </AuthProvider>

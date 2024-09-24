@@ -52,6 +52,8 @@ model User {
   sessions      Session[]
   Post    Post[]
   Comment  Comment[]
+  Replies Replies[]
+  Bookmark Bookmark[]
 }
 
 model VerificationToken {
@@ -82,6 +84,7 @@ model Post {
   userEmail String
   user User @relation(fields : [userEmail], references:[email])
   comments  Comment[]
+  replies Replies[]
 
   
 }
@@ -93,8 +96,30 @@ model Comment {
   user User @relation(fields : [userEmail], references:[email])
   postSlug String
   post Post  @relation(fields : [postSlug], references : [slug])
+  replies Replies[]
 
   
+}
+
+model Replies {
+  id String @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  des String
+  userEmail String
+  user User @relation(fields: [userEmail], references: [email])
+  postSlug String
+   post Post  @relation(fields : [postSlug], references : [slug])
+  commentId String
+  comment Comment @relation(fields: [commentId], references: [id])
+
+}
+
+model Bookmark {
+  id  String @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  postId String @unique
+  userEmail String
+  user User @relation(fields: [userEmail], references: [email])
 }
 
 
