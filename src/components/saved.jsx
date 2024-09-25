@@ -1,14 +1,19 @@
 'use client';
 import { BookmarkContext } from '@/contextapi/bookmarksProvider';
 import { checkBookmark } from '@/lib/utils';
+import { Bookmark } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaRegBookmark } from 'react-icons/fa'; // Make sure this is imported
+import { BookmarkIcon } from '@heroicons/react/24/outline'; // Outline version for unbookmarked
+import { BookmarkIcon as BookmarkSolidIcon } from '@heroicons/react/24/solid'; 
+import { useRouter } from 'next/navigation';
 
 const Saved = () => {
   const { bookmarks, setBookmarks } = useContext(BookmarkContext);
   const { data: session } = useSession();
+  const router = useRouter()
   const [result, setResult] = useState([]);
   const email = session?.user?.email;
 
@@ -21,7 +26,8 @@ const Saved = () => {
         },
       });
       let output = await res.json();
-      setResult(output.result);
+       
+      setResult(output.result || []);
     } catch (error) {
       console.log('Cannot fetch the saved posts');
     }
@@ -71,30 +77,38 @@ const Saved = () => {
   }, [bookmarks]);
 
   return (
-    <div className="w-full h-full bg-hoverBg py-8 px-12 overflow-y-scroll">
-      <h1 className="text-3xl font-bold">Saved Blogs</h1>
+    <div className="w-full h-full bg-inputBg py-8 lg:px-12 px-3">
+  <h1 className="text-3xl font-bold">Saved Blogs</h1>
 
-      {result.map((i) => {
-       // Check bookmark state for each post
+  {result?.map((i) => {
+    const isBookmarked = checkBookmark(bookmarks, i.id); // Check bookmark state for each post
 
-        return (
-          <div key={i.id} className="box flex mt-6 flex-row bg-inputBg w-5/6 mx-auto h-48 relative p-4">
-            <FaRegBookmark
-              onClick={() => handleBookmark(i.id)}
-              className={`hover:scale-150 absolute top-2 right-2 cursor-pointer ${checkBookmark(bookmarks, i.id) && 'text-blue-500'}`} // Optimistic UI change
-            />
-            <div className="imgWrapper w-1/3 relative">
-              <Image alt="no image" src={i.img} fill style={{ objectFit: 'contain' }} />
-            </div>
-            <div className="w-2/3 p-4">
-              <div className="text-2xl font-bold headers">{i.title.substring(0, 40)}</div>
-              <div className="des text-lg font-semibold">{i.des.substring(0, 80)}</div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+    return (
+      <div key={i.id} className="box flex flex-col md:flex-row  mt-6 bg-hoverBg w-full md:w-5/6 mx-auto h-auto md:h-48 relative">
+        <div className="absolute top-2 right-2 z-10">
+          {isBookmarked ? (
+            <BookmarkSolidIcon className="text-blue-500 h-6 w-6 cursor-pointer" onClick={() => handleBookmark(i.id)} />
+          ) : (
+            <BookmarkIcon className="h-6 w-6 cursor-pointer" onClick={() => handleBookmark(i.id)} />
+          )}
+        </div>
+
+        <div className="imgWrapper w-full md:w-1/3 relative h-48 md:h-auto">
+          <Image alt="no image" src={i.img} fill style={{ objectFit: 'cover' }} />
+        </div>
+        <div className="w-full md:w-2/3 p-4 overflow-hidden md:px-4 md:pt-6">
+          <div onClick={() => router.push(`/posts/singlepost?slug=${i.slug}`)} className="md:text-2xl cursor-pointer hover:text-blue-800 text-xl font-bold headers">{i.title.substring(0, 40)}</div>
+          <div className="des md:text-md text-sm font-normal">{i.des.substring(0, 80)}</div>
+        </div>
+      </div>
+    );
+  })}
+
+  {result.length === 0 && (
+    <div className="text-3xl text-center mt-10">No Bookmarks yet</div>
+  )}
+</div>
+  )
 };
 
 export default Saved;

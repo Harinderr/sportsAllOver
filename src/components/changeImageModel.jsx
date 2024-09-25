@@ -7,7 +7,7 @@ import {
     getDownloadURL,
   } from "firebase/storage";
 
-const ChangeImageModel = ({setIsImgChangerOpen, email}) => {
+const ChangeImageModel = ({setIsImgChangerOpen, src, email}) => {
    const storage = getStorage(app);
    const [selectedImage,setSelectedImage] = useState(null)
    const [file, setFile] = useState(null)
@@ -79,7 +79,7 @@ async function changeProfileImage() {
 }
 
 useEffect(()=> {
-
+setSelectedImage(src)
 
 },[])
   
@@ -114,7 +114,7 @@ useEffect(()=> {
             >
               Cancel
             </button>
-            <label className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
+            <label className="bg-blue-700 text-white px-4 py-2 rounded cursor-pointer">
               Upload/Change Image
               <input
                 type="file"
@@ -125,7 +125,7 @@ useEffect(()=> {
             </label>
             </div>
             <div className="">
-                <button onClick={changeProfileImage} className="bg-blue-500 w-full hover:bg-blue-400 text-white px-4 py-2 rounded">Set as Profile</button>
+                <button onClick={changeProfileImage} className="bg-blue-700 w-full hover:bg-blue-400 text-white px-4 py-2 rounded">Set as Profile</button>
             </div>
           </div>
         </div>

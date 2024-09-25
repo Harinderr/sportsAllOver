@@ -26,9 +26,9 @@ module.exports = {
   			'custom-gradient': 'linear-gradient(to top, #1f2937, #3A414B, transparent)'
   		},
   		colors: {
-  			bgBlack: '#1A1A1A',
-			hoverBg: "#383838",
-			inputBg : "#424242",
+  			bgBlack: '#141414',
+			hoverBg: "#191919",
+			inputBg : "#242425",
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',

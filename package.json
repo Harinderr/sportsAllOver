@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.5.0",
+    "@heroicons/react": "^2.1.5",
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.11.0",
     "@radix-ui/react-dialog": "^1.1.1",
@@ -19,6 +20,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
     "@tinymce/tinymce-react": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",

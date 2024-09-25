@@ -23,15 +23,16 @@ export default function Feature() {
 
     return (
         <div className={`${styles.features}`}>
-            <div className={`${styles.right} w-full overflow-hidden`}>
+            <div className={`${styles.right} w-full overflow-hidden h-full`}>
                
-                <div className="feature_box px-5 py-20 sm:px-10 lg:px-20 lg:py-40 xl:px-40 2xl:px-60 flex flex-col items-start gap-4">
-                    <h1 
-                        id="landing-heading" 
-                        className={`${styles.heading} font-extraBold tracking-wider text-4xl sm:text-5xl md:text-6xl xl:text-[5rem] text-slate-100`}
-                    >
-                        FUEL YOUR <span className="text-blue-500">PASSION</span>, IGNITE THE GAME
-                    </h1>
+                <div className="feature_box h-full px-5 py-20 sm:px-10 lg:px-20 lg:py-40 xl:px-40 2xl:px-60 flex flex-col items-start  gap-4">
+                <h1 
+  id="landing-heading" 
+  className={`${styles.heading} font-extraBold tracking-wider text-[3.5rem] text-wrap md:text-[6rem] xl:text-[8rem] leading-none md:leading-tight xl:leading-tight text-slate-100`}
+>
+  FUEL YOUR <span className="text-blue-500">PASSION</span>, IGNITE THE GAME
+</h1>
+
                     <p className="text-xs sm:text-sm xl:text-xl tracking-wider">
                         Get the info on the latest sports events, players, and blogs of various sports.
                     </p>

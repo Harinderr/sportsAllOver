@@ -32,7 +32,7 @@ setIsOpen(true)
 console.log(session)
   return (
     <div className=" h-full w-full">
-    <div className="wrapper h-full  mx-auto pt-10 bg-hoverBg p-5 shadow-md">
+    <div className="wrapper h-full  mx-auto pt-10 bg-inputBg p-5 shadow-md">
       <h1 className="text-2xl font-bold">Welcome to the Dashboard, <span className="text-blue-500">{name}</span> </h1>
       <div className="profile flex flex-col gap-4 mt-4">
         {img ? (
@@ -52,15 +52,15 @@ console.log(session)
         <h2 className="text-xl font-bold">User Information</h2>
         <p>Email: {email}</p>
         <div className="btn_wrapper flex gap-2">
-        <button onClick={handleChangePassword}  className="btn mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Change Password</button>
-        <button onClick={() => setIsImgChangerOpen(true)} className="btn mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Change Profile Image</button>
+        <button onClick={handleChangePassword}  className="btn mt-2 bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-500">Change Password</button>
+        <button onClick={() => setIsImgChangerOpen(true)} className="btn mt-2 bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-500">Change Profile Image</button>
        </div>
       </div>
       
       <Logout />
     </div>
   { isOpen &&  <Modal setIsOpen={setIsOpen} email={session?.user?.email}></Modal>}
-  {isImgChangerOpen && <ChangeImageModel setIsImgChangerOpen={setIsImgChangerOpen} email={session?.user?.email}></ChangeImageModel> }
+  {isImgChangerOpen && <ChangeImageModel  src={img} setIsImgChangerOpen={setIsImgChangerOpen} email={session?.user?.email}></ChangeImageModel> }
   </div>
   );
 }

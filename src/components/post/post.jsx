@@ -7,12 +7,14 @@ import { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { checkBookmark } from "@/lib/utils";
 import { BookmarkContext } from "@/contextapi/bookmarksProvider";
+import { BookmarkIcon } from '@heroicons/react/24/outline'; // Outline version for unbookmarked
+import { BookmarkIcon as BookmarkSolidIcon } from '@heroicons/react/24/solid'; 
 
 export default function Post(
   {src,title,content,date,id,slug,catSlug}
 ) {
-  const [bookmark, setBookmark] = useState(false)
   const {bookmarks, setBookmarks} = useContext(BookmarkContext)
+  const [bookmark, setBookmark] = useState(false)
   const {data, status} = useSession()
   const email = data?.user.email
 
@@ -80,10 +82,11 @@ export default function Post(
         <span className="border-2 px-1 border-white rounded-full">
           {catSlug}
         </span>
-        <FaRegBookmark
-          onClick={() => handleBookMark(id)}
-          className={`hover:scale-150 overflow-hidden cursor-pointer ${bookmark && 'bg-blue-500'}`} // Optimistic UI change
-        />
+        {bookmark ? (
+    <BookmarkSolidIcon className="text-blue-500  h-6 w-6 cursor-pointer" onClick={() => handleBookMark(id)} />
+  ) : (
+    <BookmarkIcon className="h-6 w-6 cursor-pointer" onClick={() => handleBookMark(id)} />
+  )}
       </div>
       <Image className="z-1" src={src} layout="fill" objectFit="cover" alt="no-image"></Image>
       <div className="z-10 text-gray-200 absolute w-full h-auto bottom-0 left-0 bg-gradient-to-t from-bgBlack via-gray-900/90 to-transparent">

@@ -31,7 +31,10 @@ export function convertTime(date) {
 
 export function checkBookmark(arr,val) {
  
-  const item = arr?.filter(i => i.postId === val)
+  const item = arr?.filter(i =>{
+    
+    return i.postId === val}
+    )
 
   if(item.length) {
     return true
