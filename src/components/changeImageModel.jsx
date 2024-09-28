@@ -64,7 +64,7 @@ const ChangeImageModel = ({setIsImgChangerOpen, src, email}) => {
 async function changeProfileImage() {
     try {
         if(!url) return 
-        const res = await fetch('http://localhost:3000/api/change-profile-image',{
+        const res = await fetch('https://next-blog-sand-ten-63.vercel.app/api/change-profile-image',{
             method : 'PATCH',
             headers: {
                 "Content-Type": "application/json",

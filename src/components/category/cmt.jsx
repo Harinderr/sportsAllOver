@@ -12,7 +12,7 @@ export const Cmt = ({ val, slug, selected, setSelected,type, loadReplies, reply,
   async function handlePostReply(commentId) {
     try {
       let res = await fetch(
-        `http://localhost:3000/api/replies?slug=${slug}&cmtId=${commentId}`,
+        `https://next-blog-sand-ten-63.vercel.app/api/replies?slug=${slug}&cmtId=${commentId}`,
         {
           method: "POST",
           headers: {

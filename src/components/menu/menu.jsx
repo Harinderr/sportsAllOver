@@ -9,7 +9,7 @@ export default function Menu() {
     
    async function getData() {
        try {
-           const res = await fetch('http://localhost:3000/api/popular')
+           const res = await fetch('https://next-blog-sand-ten-63.vercel.app/api/popular')
            if (res.ok){
                const { result } = await res.json()
                console.log(result)

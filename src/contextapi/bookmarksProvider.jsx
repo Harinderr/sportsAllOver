@@ -9,7 +9,7 @@ export function BookmarksProvider({ children }) {
   const getBookmarks = async () => {
     try {
     if (!session)  throw new Error("not Authenticated");
-    const res = await fetch("http://localhost:3000/api/bookmarks", {
+    const res = await fetch("https://next-blog-sand-ten-63.vercel.app/api/bookmarks", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${session.accessToken}`,

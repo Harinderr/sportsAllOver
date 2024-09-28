@@ -33,7 +33,7 @@ export default function Post(
       // Toggle based on current bookmark state
       if (bookmark && isBookmarked) {
         // If currently bookmarked, delete the bookmark
-        let res = await fetch('http://localhost:3000/api/bookmarks', {
+        let res = await fetch('https://next-blog-sand-ten-63.vercel.app/api/bookmarks', {
           method: 'DELETE',
           headers: {
             'Content-type': 'application/json'
@@ -50,7 +50,7 @@ export default function Post(
         }
       } else {
         // If not bookmarked, add the bookmark
-        let res = await fetch(`http://localhost:3000/api/bookmarks`, {
+        let res = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/bookmarks`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json'

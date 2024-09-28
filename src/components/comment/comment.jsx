@@ -17,7 +17,7 @@ export default function Comment({ slug }) {
   const commentData = async () => {
     try {
       let response = await fetch(
-        `http://localhost:3000/api/comment?slug=${slug}`
+        `https://next-blog-sand-ten-63.vercel.app/api/comment?slug=${slug}`
       );
       if (response.ok) {
         const { result } = await response.json();
@@ -43,7 +43,7 @@ export default function Comment({ slug }) {
     }
     try {
       const response = await fetch(
-        `http://localhost:3000/api/comment?slug=${slug}`,
+        `https://next-blog-sand-ten-63.vercel.app/api/comment?slug=${slug}`,
         {
           method: "POST",
           headers: {
@@ -64,7 +64,7 @@ export default function Comment({ slug }) {
 
   async function loadReplies(cmtId) {
     try {
-      let res = await fetch(`http://localhost:3000/api/replies?cmtId=${cmtId}`);
+      let res = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/replies?cmtId=${cmtId}`);
       if (res.ok) {
         const { result } = await res.json();
 
