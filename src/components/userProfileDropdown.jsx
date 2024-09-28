@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { LayoutDashboard, LogOut } from "lucide-react";
 
 const UserProfileDropdown = ({ status, data }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,7 @@ const UserProfileDropdown = ({ status, data }) => {
       {status === "authenticated" ? (
         <div className="relative" ref={dropdownRef}>
           <div
-            className="relative w-8 h-8 border-2 border-white rounded-full cursor-pointer"
+            className="relative w-8 h-8 border-2 border-white overflow-hidden rounded-full cursor-pointer"
             onClick={handleToggleDropdown}
           >
             {data?.user?.image ? (
@@ -43,7 +44,7 @@ const UserProfileDropdown = ({ status, data }) => {
                 className="rounded-full"
               />
             ) : (
-              <div className="profile_container w-10">
+              <div className="profile_container w-full">
                 <div className="box w-8 h-8 bg-red-300 flex justify-center items-center rounded-full text-xl font-bold">
                   <p>{firstLetter}</p>
                 </div>
@@ -53,12 +54,12 @@ const UserProfileDropdown = ({ status, data }) => {
 
           {/* Dropdown menu */}
           {isOpen && (
-            <ul className="absolute right-0 mt-2 bg-bgBlack shadow-lg rounded-lg p-2 w-64">
-              <li className="hover:bg-hoverBg px-4 rounded-md py-4">
-                <Link onClick={() => setIsOpen(false)} href="/profile" >Dashboard</Link>
+            <ul className="absolute right-0 mt-2 bg-hoverBg shadow-lg rounded-lg p-2 w-64">
+              <li className="hover:bg-gray-700 px-4 rounded-md py-4">
+                <Link className="flex flex-row gap-4 items-center" onClick={() => setIsOpen(false)} href="/profile" ><LayoutDashboard color="white" />Dashboard</Link>
               </li>
-              <li className="hover:bg-hoverBg rounded-md px-4 py-4">
-                <Link onClick={() => setIsOpen(false)} href="/logout">Logout</Link>
+              <li className="hover:bg-gray-700 rounded-md px-4 py-4">
+                <Link className="flex flex-row gap-4 items-center" onClick={() => setIsOpen(false)} href="/logout"><LogOut color="white" />Logout</Link>
               </li>
             </ul>
           )}

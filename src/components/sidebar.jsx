@@ -4,11 +4,15 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Profile from './profile';
 import Saved from './saved';
+import { useContext } from 'react';
+import { UserAuthContext } from '@/contextapi/UserAuthContext';
+import AllBlogs from './AllBlogs';
 
 
 export default function Sidebar() {
   const router = useRouter();
   const pathname = usePathname()
+  const {session} = useContext(UserAuthContext)
   const isActive = (path) => pathname === path || pathname == `${path}/`;
 
   return (
@@ -21,9 +25,13 @@ export default function Sidebar() {
     <TabsTrigger value="saved" >
       Saved
     </TabsTrigger>
+  { session?.user?.role === 'admin'  && (<TabsTrigger value="all" >
+      Manage Blogs
+    </TabsTrigger>)}
   </TabsList>
   <TabsContent value="profile"><Profile/></TabsContent>
   <TabsContent value="saved"> <Saved/></TabsContent>
+  <TabsContent value="all"> <AllBlogs/></TabsContent>
 </Tabs>
     </div>
   );

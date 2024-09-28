@@ -12,31 +12,32 @@ export default function Menu() {
            const res = await fetch('http://localhost:3000/api/popular')
            if (res.ok){
                const { result } = await res.json()
+               console.log(result)
                setData(result)
                
            }
            
        } catch (error) {
-           console.log('there is an error')
+           console.log(error)
        }
    }
   useEffect(()=> {
    getData()
   },[])
      return (
-        <div className={`${styles.menu_container} bg-bgBlack md:px-10 px-4 pt-16 pb-20 w-full overflow-hidden h-auto`}>
+        <div id="popular" className={`${styles.menu_container} bg-bgBlack md:px-10 px-4 pt-16 pb-20 w-full overflow-hidden h-auto`}>
   <h4 className={`${styles.heading} text-center mb-10 text-4xl font-bold`}>MOST POPULAR</h4>
   
   {/* Grid layout that changes on different breakpoints */}
   <div className="post_wrapper px-4 grid grid-cols-1  xs:grid-cols-4 gap-3  md:px-8">
-    {data.map((item, index) => (
+    {data?.map((item, index) => (
       <PopularPost
         key={item.id}
         index={index}
         id={item.id}
         src={item.img}
         title={item.title}
-        des={item.des}
+        subDes={item.subDes}
         slug={item.slug}
         catSlug={item.catSlug}
       />

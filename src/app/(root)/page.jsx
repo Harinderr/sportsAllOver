@@ -14,7 +14,7 @@ export default function Home({searchParams}) {
   return <div>
     <Feature></Feature>
     <Search></Search> 
-   <Blog></Blog>
     <Menu></Menu>
+   <Blog></Blog>
   </div>;
 }

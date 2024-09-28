@@ -11,6 +11,7 @@ import * as Yup from 'yup'
 export default function Signup() {
 
   const [formData, setFromData] = useState({});
+  const [loading, setLoading] = useState(false)
   const { data, status } = useSession();
   const [error, setError]= useState({})
   const router = useRouter()
@@ -32,7 +33,7 @@ export default function Signup() {
   async function handleLogin(e) {
   
     e.preventDefault();
-
+setLoading(true)
     
       try {
         const valid = await validationSchema.validate(formData,{abortEarly : false})
@@ -46,17 +47,20 @@ export default function Signup() {
           });
           if (response.ok) {
             let result = await response.json();
+            setLoading(false)
             router.push('/form/login')
             setUserStatus('login')
           }
         }
         
+        
       } catch (err) {
-
+        
         const error = {}
-        err.inner.forEach(e => {
+        err?.inner?.forEach(e => {
           error[e.path] =  e.message
         });
+        setLoading(false)
         setError(error)
       }
     } 
@@ -85,7 +89,7 @@ export default function Signup() {
         required
       />
          </div>
-      {error.username && <div className="text-red-700">{error.username}</div>}
+      {error.username && <div className="text-red-600">{error.username}</div>}
 <div className="flex flex-col  space-y-1">
       <label htmlFor="email" className="text-lg font-semibold">Email</label>
       <input
@@ -98,7 +102,7 @@ export default function Signup() {
         required
       />
       </div>
-      {error.email && <div className="text-red-700">{error.email}</div>}
+      {error.email && <div className="text-red-600">{error.email}</div>}
       <div className="flex flex-col  space-y-1">
       <label htmlFor="password" className="text-lg font-semibold">Password</label>
       <input
@@ -111,14 +115,15 @@ export default function Signup() {
         required
       />
       </div>
-      {error.password && <div className="text-red-700">{error.password}</div>}
+      {error.password && <div className="text-red-600">{error.password}</div>}
 
       <button 
+      disabled={loading}
         type="submit" 
-        className="rounded-full bg-blue-700 text-white py-3 mt-4 hover:bg-blue-600 transition-all duration-300"
+        className="rounded-full bg-blue-700 flex flex-row justify-center items-center gap-2 text-white py-3 mt-4 hover:bg-blue-600 transition-all duration-300"
         onClick={(e) => handleLogin(e)}
       >
-        Signup
+         <span>Signup</span>{ loading && <div className="loader"></div>}
       </button>
 
       <div className={`${styles.links} text-center mt-4`}>

@@ -6,11 +6,13 @@ import styles from "./login.module.css";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import * as Yup from 'yup'
+import { Loader, Loader2 } from "lucide-react";
 export default function Login() {
 
   const [formData, setFromData] = useState({});
   const { data, status } = useSession();
   const [error, setError] = useState({})
+  const [loading, setLoading]  = useState(false)
   const [credentialError, setCredentialError] = useState(false)
 const router = useRouter()
   const validationSchema = Yup.object({
@@ -25,6 +27,7 @@ const router = useRouter()
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try{
         const valid = await validationSchema.validate(formData,{abortEarly:false})
         if (valid) {
@@ -35,15 +38,18 @@ const router = useRouter()
             
         })
         if(signinData.error){
+          setLoading(false)
           setCredentialError(true)
           }
         else {
+          setLoading(false)
           router.push('/dashboard')
         }
         }
     }
     catch (err) {
       console.log(err)
+      setLoading(false)
       const error = {}
       err.inner.forEach(e => {
         error[e.path] =  e.message
@@ -82,7 +88,7 @@ const router = useRouter()
         <label htmlFor="password" className="text-lg font-semibold">Password</label>
         <input
           onChange={(e) => handleChange(e)}
-          className="rounded-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="rounded-full p-3 border text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="password"
           name="password"
           id="password"
@@ -93,18 +99,19 @@ const router = useRouter()
         {error.password && <div className="text-red-700">{error.password}</div>}
   
         {credentialError && (
-          <div className="bg-red-700/50 rounded-xl mt-4 h-12 font-bold text-center text-white text-lg flex items-center justify-center">
+          <div className="bg-red-700/50 rounded-xl mt-4 h-12  text-center text-white text-lg font-light flex items-center justify-center">
             Invalid credentials
           </div>
         )}
   
         <button
           type="submit"
-          className="rounded-full bg-blue-700 text-white py-3  hover:bg-blue-600 transition-all duration-300"
+          disabled={loading}
+          className=" rounded-full flex flex-row justify-center gap-2 items-center bg-blue-700 text-white py-3  hover:bg-blue-600 "
         >
-          Login
+         <span>Login</span>  { loading && <div class="loader"></div>}
         </button>
-  
+        
         <div className={`${styles.links} text-center mt-4`}>
           Click here to{' '}
           <span>

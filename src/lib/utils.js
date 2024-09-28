@@ -1,4 +1,5 @@
 import { clsx } from "clsx";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs) {
@@ -42,3 +43,19 @@ export function checkBookmark(arr,val) {
   return false
 }
 
+export async function deleteImagesFromFirebase(imageUrls) {
+  const storage = getStorage(app);
+
+  const deletionPromises = imageUrls.map(async (url) => {
+    const imageRef = ref(storage, url);
+    try {
+      await deleteObject(imageRef);
+      console.log(`Deleted image: ${url}`);
+    } catch (error) {
+      console.error(`Error deleting image: ${url}`, error);
+    }
+  });
+
+  // Wait for all images to be deleted
+  await Promise.all(deletionPromises);
+}

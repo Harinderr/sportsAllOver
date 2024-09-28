@@ -76,8 +76,10 @@ model Post {
   slug  String @unique
   title  String
   des  String
-   createdAt DateTime @default(now())
-  img  String?
+  subDes String
+  img String?
+  imgUrls String[]
+  createdAt DateTime @default(now())
   views  Int @default(0)
   catSlug  String
   cat Category @relation(fields : [catSlug], references: [slug])
@@ -121,5 +123,6 @@ model Bookmark {
   userEmail String
   user User @relation(fields: [userEmail], references: [email])
 }
+
 
 

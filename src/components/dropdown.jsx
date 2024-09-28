@@ -23,15 +23,15 @@ export function DropdownMenuRadioGroupDemo({children}) {
       <DropdownMenuTrigger asChild>
         {children}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-bgBlack flex flex-col border-none">
+      <DropdownMenuContent className="w-56 bg-hoverBg flex flex-col border-none">
       
         <DropdownMenuSeparator  />
         
        
-            <Link href={'/dashboard'} className="text-white px-4 py-2 hover:bg-slate-700">Dashboard</Link>
+            <Link href={'/dashboard'} className="text-white px-4 py-2 hover:bg-slate-700"> <LayoutDashboard color="white" /> Dashboard</Link>
          
           
-          <div onClick={()=> signOut()} className="text-white px-4 py-2 hover:bg-gray-700">Logout</div>
+          <div onClick={()=> signOut()} className="text-white px-4 py-2 hover:bg-gray-700"> <LogOut color="white" /> Logout</div>
          
          
        

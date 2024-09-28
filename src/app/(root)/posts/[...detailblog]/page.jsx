@@ -5,11 +5,14 @@ import Menu from "@/components/menu/menu";
 import Comment from "@/components/comment/comment";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { stateToHTML } from 'draft-js-export-html';
+
+import { convertFromRaw } from "draft-js";
 
 export default function DetailBlog() {
   const searchParams = useSearchParams();
   const slug = searchParams.get('slug');
-
+  const [postContent ,setPostContent] = useState(null)
   const [data, setData] = useState({});
   const [time, setTime] = useState('');
 
@@ -19,6 +22,7 @@ export default function DetailBlog() {
         const response = await fetch(`http://localhost:3000/api/posts/singlepost?slug=${slug}`);
         if (response.ok) {
           const { result } = await response.json();
+          
           setData(result);
         } else {
           console.error('Failed to fetch blog data:', response.statusText);
@@ -43,13 +47,39 @@ export default function DetailBlog() {
 
   const firstLetter = data.user?.name?.slice(0, 1).toUpperCase();
   const image = data.user?.image;
-
+  useEffect(() => {
+    if (!data?.des) {
+      // If data.des is undefined or null, skip the processing
+      return;
+    }
+  
+    try {
+      // Parse the content if it's available
+      const rawContent = JSON.parse(data.des);
+      
+      // Ensure the parsed content is valid before converting
+      if (rawContent) {
+        // Convert from Raw JSON to Draft.js Content State
+        const contentState = convertFromRaw(rawContent);
+        
+        // Convert Content State to HTML
+        const htmlContent = stateToHTML(contentState)
+        
+        // Set the converted HTML content
+        setPostContent(htmlContent);
+      }
+    } catch (error) {
+      console.error('Error parsing or converting content:', error);
+    }
+  }, [data.des]);
+  
+ 
   return (
     <div className={styles.blog_box}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <h1 className={styles.heading}>{data.title}</h1>
-          <div className={styles.user}>
+          <div className={`${styles.user} mb-8`}>
             {image ? (
               <Image src={image} alt="User Image" height={50} width={50} />
             ) : (
@@ -62,10 +92,11 @@ export default function DetailBlog() {
               <p>{time}</p>
             </div>
           </div>
-          <div className={styles.content}>
+          <div dangerouslySetInnerHTML={{ __html: postContent }} />
+          {/* <div className={styles.content}>
             <Image src={data?.img} alt="no image" height={300} width={300} />
             <p className={`${styles.description} white-space: pre-wrap`}>{data.des}</p>
-          </div>
+          </div> */}
         </div>
        
       </div>

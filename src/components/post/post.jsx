@@ -11,7 +11,7 @@ import { BookmarkIcon } from '@heroicons/react/24/outline'; // Outline version f
 import { BookmarkIcon as BookmarkSolidIcon } from '@heroicons/react/24/solid'; 
 
 export default function Post(
-  {src,title,content,date,id,slug,catSlug}
+  {src,title,subDes,date,id,slug,catSlug}
 ) {
   const {bookmarks, setBookmarks} = useContext(BookmarkContext)
   const [bookmark, setBookmark] = useState(false)
@@ -74,12 +74,12 @@ export default function Post(
   }
 
   const titletextLimit = title && title.substring(0, 50) + '...'
-  const contentTextLimit = content && content.substring(0, 80) + '...'
+  const contentTextLimit = subDes && subDes.substring(0, 80) + '...'
 
   return (
     <div className="postContainer sm:h-72 w-56 h-44 relative group rounded-md">
       <div className="z-10 text-xs rounded-full flex flex-row justify-between items-center gap-2 p-1 absolute right-1 top-1">
-        <span className="border-2 px-1 border-white rounded-full">
+        <span className="border-2 px-1 capitalize border-blue-500 rounded-full">
           {catSlug}
         </span>
         {bookmark ? (
@@ -94,7 +94,7 @@ export default function Post(
           <Link className="text-wrap h-auto font-semibold text-base md:text-xl hover:underline" href={`/posts/singlepost?slug=${slug}`}>
             {titletextLimit}
           </Link>
-          <p className="text-sm text-white opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-20 translate-all duration-1000">
+          <p className="  text-xs sm:text-sm  text-white opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-20 translate-all duration-1000">
             {contentTextLimit}
           </p>
         </div>

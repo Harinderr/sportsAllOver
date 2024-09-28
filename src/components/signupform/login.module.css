@@ -16,6 +16,9 @@
    
     
 }
+.login_container form input {
+color: black;
+}
 .login_container form label {
     margin-block: 1rem;
     text-transform: capitalize;
@@ -30,11 +33,11 @@
 
 .login_container form input[type="text"] {
     padding: .8rem;
-    color: var(--textColor);
+    
 }
 .login_container form input[type="email"] {
     padding: .8rem;
-    color: black;
+   
 }
 .login_container form input[ type="password"] {
     padding: .8rem;
@@ -43,7 +46,7 @@
     margin-top: 2rem;
     font-weight: 700;
     font-size: 1.2em;
-    background-color: red;
+    
     padding: .8rem;
 }
 

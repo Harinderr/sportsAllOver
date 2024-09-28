@@ -93,12 +93,12 @@ const Saved = () => {
           )}
         </div>
 
-        <div className="imgWrapper w-full md:w-1/3 relative h-48 md:h-auto">
+        <div className="imgWrapper overflow-hidden md:m-5 w-full md:w-1/3 relative h-48 md:h-auto">
           <Image alt="no image" src={i.img} fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="w-full md:w-2/3 p-4 overflow-hidden md:px-4 md:pt-6">
           <div onClick={() => router.push(`/posts/singlepost?slug=${i.slug}`)} className="md:text-2xl cursor-pointer hover:text-blue-800 text-xl font-bold headers">{i.title.substring(0, 40)}</div>
-          <div className="des md:text-md text-sm font-normal">{i.des.substring(0, 80)}</div>
+          <div className="des md:text-md text-sm font-normal">{i.subDes.substring(0, 80)}</div>
         </div>
       </div>
     );

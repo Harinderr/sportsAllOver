@@ -3,7 +3,7 @@
  import Image from "next/image";
 
  
-export default function PopularPost({id,index, title,src, des,slug,catSlug}) {
+export default function PopularPost({id,index, title,src, subDes,slug,catSlug}) {
     const fulldate = new Date()
     const date  =   fulldate.toISOString().split('T')[0];
    
@@ -16,7 +16,7 @@ export default function PopularPost({id,index, title,src, des,slug,catSlug}) {
     index == 0 ? 'xs:col-span-2 xs:row-span-2 ' : index == 1 ? 'xs:col-span-2 xs:row-span-1' : ''
   } group relative min-h-[12rem]  rounded-md`}
 >
-<span className="z-10 text-xs rounded-full font-normal border-2 text-white  border-blue-400 p-1 absolute right-1 top-1">{catSlug}</span>
+<span className="z-10 text-xs rounded-full capitalize font-normal border-2 text-white  border-blue-400 p-1 absolute right-1 top-1">{catSlug}</span>
   <Image
     className="rounded-md"
     src={src}
@@ -34,7 +34,7 @@ export default function PopularPost({id,index, title,src, des,slug,catSlug}) {
         {title.substring(0, 40) + '...'}
       </Link>
       <p className="text-sm md:text-base text-white opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-20 translate-all duration-1000">
-        {des.substring(0, 80) + '...'}
+        {subDes.substring(0, 80) + '...'}
       </p>
     </div>
   </div>

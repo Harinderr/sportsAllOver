@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={`${styles.container} w-full flex h-20 bg-[#0E0E0E]`}>
+      <div className={`${styles.container} w-full flex h-20 bg-bgBlack`}>
         <div
           className={`${styles.outlay} flex justify-between items-center w-full px-4 sm:px-10 lg:px-24 xl:px-36`}
         >
@@ -43,17 +43,17 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Nav Links (Hidden on mobile, shown on larger screens) */}
-          <div className="hidden sm:flex justify-between items-center w-1/2 text-sm lg:text-xl">
+          <div className="hidden sm:flex justify-between items-center w-1/2 md:w-2/5 text-sm lg:text-lg">
             <Link className={styles.nav_link} href={"/"}>
               HOME
             </Link>
             <Link className={styles.nav_link} href={"#latest"}>
               LATEST
             </Link>
-            <Link className={styles.nav_link} href={"#"}>
+            <Link className={styles.nav_link} href={"#footer"}>
               ABOUT
             </Link>
-
+            
             <UserProfileDropdown status={status} data={data}></UserProfileDropdown>
           </div>
 

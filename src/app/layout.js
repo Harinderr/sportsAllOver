@@ -6,7 +6,9 @@ import { ThemeContextProvider } from "@/contextapi/ThemeContext";
 import ThemeBox from "@/provider/ThemeProvider";
 import Script from "next/script";
 import { AuthProvider } from "@/provider/authProvider";
+import { UserAuthProvider } from '@/contextapi/UserAuthContext'
 import { BookmarksProvider } from "@/contextapi/bookmarksProvider";
+import NextTopLoader from "nextjs-toploader";
 
 const roboto = Roboto_Slab({
   subsets: ["latin"],
@@ -45,15 +47,19 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${roboto.variable} ${bebas.variable}`}>
         <AuthProvider>
+        <UserAuthProvider>
+
           <ThemeContextProvider>
             <ThemeBox>
             <BookmarksProvider>
+            <NextTopLoader />
              <Navbar />
               {children}
               <Footer />
             </BookmarksProvider>
             </ThemeBox>
           </ThemeContextProvider>
+          </UserAuthProvider>
         </AuthProvider>
       </body>
     </html>

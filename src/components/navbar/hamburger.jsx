@@ -28,16 +28,16 @@ export default function Hamburger({status}) {
               <Link scroll={true} className="text-white font-semibold p-3 hover:bg-hoverBg" href={'#latest'}>Latest</Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link scroll={true} className="text-white font-semibold p-3 hover:bg-hoverBg" href={'/'}>About</Link>
+              <Link scroll={true} className="text-white font-semibold p-3 hover:bg-hoverBg" href={'/footer'}>About</Link>
             </SheetClose>
 
             {status === 'authenticated' ? (
               <>
                 <SheetClose asChild>
-                  <div className="text-white font-semibold p-3 hover:bg-hoverBg" style={{cursor:'pointer'}} onClick={()=> signOut()}>Logout</div>
+                  <Link href={'/profile'} className="text-white font-semibold p-3 hover:bg-hoverBg">DashBoard</Link>
                 </SheetClose>
                 <SheetClose asChild>
-                  <Link href={'/write'} className="text-white font-semibold p-3 hover:bg-hoverBg">Write</Link>
+                  <div className="text-white font-semibold p-3 hover:bg-hoverBg" style={{cursor:'pointer'}} onClick={()=> signOut()}>Logout</div>
                 </SheetClose>
               </>
             ) : (

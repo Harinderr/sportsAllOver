@@ -60,7 +60,8 @@ export const authoption = {
           id: existingUser.id,
           username: existingUser.name,
           email: existingUser.email,
-          image : existingUser.image
+          image : existingUser.image,
+          role : existingUser.role
           
         }
         console.log(output)
@@ -76,6 +77,7 @@ export const authoption = {
         username : user.username,
         role : user.role,
         image : user.image
+        
       }
      }
      return token

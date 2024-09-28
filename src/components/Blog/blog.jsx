@@ -8,11 +8,8 @@ import { useRouter } from "next/navigation"
 export default function Blog() {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
-    const [disabled, setDisabled] = useState(false);
     const [count, setCount] = useState(4);
-    
-    const router = useRouter();
-    const isFirstRender = useRef(true);
+ const isFirstRender = useRef(true);
 
     async function blogData(page) {
         try {
@@ -37,7 +34,7 @@ export default function Blog() {
     }, [page]);
 
     return (
-        <div className=" bg-bgBlack w-full px-4 py-10">
+        <div className=" bg-bgBlack w-full px-4 pb-10">
             <h1 className="text-4xl font-bold text-center py-10" id="latest">LATEST</h1>
             
             {/* Responsive wrapper for blog posts */}
@@ -48,7 +45,7 @@ export default function Blog() {
                         src={val.img} 
                         slug={val.slug} 
                         title={val.title} 
-                        content={val.des} 
+                        subDes={val.subDes}
                         date={val.createdAt} 
                         id={val.id} 
                         catSlug={val.catSlug}
