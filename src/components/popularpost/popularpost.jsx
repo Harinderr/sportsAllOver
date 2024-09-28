@@ -41,10 +41,10 @@ export default function PopularPost({
             className="text-wrap h-auto font-semibold text-base md:text-xl hover:underline"
             href={`/posts/singlepost?slug=${slug}`}
           >
-            {title.substring(0, 40) + "..."}
+            {title?.substring(0, 40) + "..."}
           </Link>
           <p className="text-sm md:text-base text-white opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-20 translate-all duration-1000">
-            {subDes.substring(0, 80) + "..."}
+            {subDes?.substring(0, 80) + "..."}
           </p>
         </div>
       </div>

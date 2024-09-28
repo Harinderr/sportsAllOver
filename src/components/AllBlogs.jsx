@@ -75,8 +75,8 @@ useEffect(() => {
           <Image alt="no image" src={i.img} fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="w-full md:w-2/3 p-4 overflow-hidden md:px-4 md:pt-6">
-          <div onClick={() => router.push(`/posts/singlepost?slug=${i.slug}`)} className="md:text-2xl cursor-pointer hover:text-blue-600 text-xl font-bold headers">{i.title.substring(0, 40)}</div>
-          <div className="des md:text-md text-sm font-normal">{i.subDes.substring(0, 80)}</div>
+          <div onClick={() => router.push(`/posts/singlepost?slug=${i.slug}`)} className="md:text-2xl cursor-pointer hover:text-blue-600 text-xl font-bold headers">{i?.title?.substring(0, 40)}</div>
+          <div className="des md:text-md text-sm font-normal">{i?.subDes?.substring(0, 80)}</div>
         </div>
       </div>
     );

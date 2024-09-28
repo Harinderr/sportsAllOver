@@ -39,7 +39,7 @@ export default function Blog() {
             
             {/* Responsive wrapper for blog posts */}
             <div className="flex flex-wrap justify-center gap-6">
-                {data.map((val) => (
+                {data?.map((val) => (
                     <Post 
                         key={val.id} 
                         src={val.img} 

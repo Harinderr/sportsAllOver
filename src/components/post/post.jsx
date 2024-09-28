@@ -73,8 +73,8 @@ export default function Post(
     }
   }
 
-  const titletextLimit = title && title.substring(0, 50) + '...'
-  const contentTextLimit = subDes && subDes.substring(0, 80) + '...'
+  const titletextLimit = title && title?.substring(0, 50) + '...'
+  const contentTextLimit = subDes && subDes?.substring(0, 80) + '...'
 
   return (
     <div className="postContainer sm:h-72 w-56 h-44 relative group rounded-md">
