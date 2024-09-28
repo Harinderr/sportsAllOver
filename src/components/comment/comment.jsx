@@ -118,6 +118,7 @@ export default function Comment({ slug }) {
           return (
             <>
               <Cmt
+              key={val.id}
                 val={item}
                 type={"comment"}
                 slug={slug}
@@ -133,6 +134,7 @@ export default function Comment({ slug }) {
                   cmtReplies[item.id]?.map((val) => {
                     return (
                       <Cmt
+                      key={val.id}
                         val={val}
                         type={"replies"}
                         slug={slug}

@@ -37,9 +37,7 @@ export const Cmt = ({ val, slug, selected, setSelected,type, loadReplies, reply,
 
   return (
     <div
-      className={`${styles.comment_container} ${type == 'replies' && 'ml-8' } rounded-xl bg-bgBlack px-8 py-4 `}
-      key={val.id}
-    >
+      className={`${styles.comment_container} ${type == 'replies' && 'ml-8' } rounded-xl bg-bgBlack px-8 py-4 `}>
       <div className={`${styles.user} flex flex-row gap-4 `}>
       {val?.image ? (
         <div className="relative w-8 h-8">
