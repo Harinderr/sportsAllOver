@@ -27,7 +27,7 @@ export default function Feature() {
         <div className="feature_box h-full px-5 py-20 sm:px-10 lg:px-20 lg:py-40 xl:px-40 2xl:px-60 flex flex-col items-start  gap-4">
           <h1
             id="landing-heading"
-            className={`${styles.heading} font-extraBold tracking-tighter text-[3.5rem] text-wrap md:text-[6rem] xl:text-[8rem] leading-none  text-slate-100`}
+            className={`${styles.heading} font-extraBold tracking-normal text-[3.5rem] text-wrap md:text-[6rem] xl:text-[8rem] leading-none  text-slate-100`}
           >
             FUEL YOUR <span className="text-blue-500">PASSION</span>, IGNITE THE
             GAME

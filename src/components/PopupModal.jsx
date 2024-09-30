@@ -19,7 +19,7 @@ export default function Modal({ setIsOpen ,email}) {
     try {
       const valid = await validationSchema.validate({newPass, existingPass, confirmNewPass}, {abortEarly:false})
       if (valid){
-      const response = await fetch("https://next-blog-sand-ten-63.vercel.app/api/change-pass", {
+      const response = await fetch("/api/change-pass", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

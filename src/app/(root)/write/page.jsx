@@ -69,7 +69,7 @@ export default function Write() {
         return slug;
       };
      
-      const res = await fetch("https://next-blog-sand-ten-63.vercel.app/api/posts", {
+      const res = await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
           title: title,

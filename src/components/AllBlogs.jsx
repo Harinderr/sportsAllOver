@@ -23,7 +23,7 @@ const isFirstRender = useRef(true);
 
 // deleting post from db 
   async function DeletePost(slugValue) {
-    const res = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/posts?slug=${slugValue}`,{
+    const res = await fetch(`/api/posts?slug=${slugValue}`,{
         method : 'DELETE',
         headers : {
            'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ const isFirstRender = useRef(true);
   }
   async function blogData(page) {
     try {
-        let response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/blog?page=${page}`);
+        let response = await fetch(`/api/blog?page=${page}`);
         if (response.ok) {
             let { result, count } = await response.json();
             
@@ -50,10 +50,7 @@ const isFirstRender = useRef(true);
 }
 
 useEffect(() => {
-    if (isFirstRender.current) {
-        isFirstRender.current = false;
-        return;
-    }
+   
     blogData(page);
 }, [page]);
 

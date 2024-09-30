@@ -13,7 +13,7 @@ export default function Blog() {
 
     async function blogData(page) {
         try {
-            let response = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/blog?page=${page}`);
+            let response = await fetch(`/api/blog?page=${page}`);
             if (response.ok) {
                 let { result, count } = await response.json();
                 
@@ -26,10 +26,10 @@ export default function Blog() {
     }
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
+        // if (isFirstRender.current) {
+        //     isFirstRender.current = false;
+        //     return;
+        // }
         blogData(page);
     }, [page]);
 

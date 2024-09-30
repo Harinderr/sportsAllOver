@@ -17,7 +17,7 @@ export default function Comment({ slug }) {
   const commentData = async () => {
     try {
       let response = await fetch(
-        `https://next-blog-sand-ten-63.vercel.app/api/comment?slug=${slug}`
+        `/api/comment?slug=${slug}`
       );
       if (response.ok) {
         const { result } = await response.json();
@@ -35,7 +35,7 @@ export default function Comment({ slug }) {
     setFormData({ ...formData, [name]: value });
   }
 
-  async function handleLogin(e) {
+  async function handleComment(e) {
     e.preventDefault();
     if (status == "unauthenticated") {
       alert("login to comment");
@@ -43,7 +43,7 @@ export default function Comment({ slug }) {
     }
     try {
       const response = await fetch(
-        `https://next-blog-sand-ten-63.vercel.app/api/comment?slug=${slug}`,
+        `/api/comment?slug=${slug}`,
         {
           method: "POST",
           headers: {
@@ -64,7 +64,7 @@ export default function Comment({ slug }) {
 
   async function loadReplies(cmtId) {
     try {
-      let res = await fetch(`https://next-blog-sand-ten-63.vercel.app/api/replies?cmtId=${cmtId}`);
+      let res = await fetch(`/api/replies?cmtId=${cmtId}`);
       if (res.ok) {
         const { result } = await res.json();
 
@@ -93,7 +93,7 @@ export default function Comment({ slug }) {
 
       
       <form
-        onSubmit={(e) => handleLogin(e)}
+        onSubmit={(e) => handleComment(e)}
         action=""
         className="flex flex-row "
       >
@@ -118,7 +118,7 @@ export default function Comment({ slug }) {
           return (
             <>
               <Cmt
-              key={val.id}
+              key={item.id}
                 val={item}
                 type={"comment"}
                 slug={slug}

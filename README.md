@@ -12,7 +12,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [https://next-blog-sand-ten-63.vercel.app](https://next-blog-sand-ten-63.vercel.app) with your browser to see the result.
+Open []() with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
