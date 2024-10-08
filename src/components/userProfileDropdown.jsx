@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LayoutDashboard, LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 const UserProfileDropdown = ({ status, data }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +60,10 @@ const UserProfileDropdown = ({ status, data }) => {
                 <Link className="flex flex-row gap-4 items-center" onClick={() => setIsOpen(false)} href="/profile" ><LayoutDashboard color="white" />Dashboard</Link>
               </li>
               <li className="hover:bg-gray-700 rounded-md px-4 py-4">
-                <Link className="flex flex-row gap-4 items-center" onClick={() => setIsOpen(false)} href="/logout"><LogOut color="white" />Logout</Link>
+                <Link className="flex flex-row gap-4 items-center" onClick={() =>{ 
+                  setIsOpen(false)
+                  signOut()
+                  }} href="/"><LogOut color="white" />Logout</Link>
               </li>
             </ul>
           )}

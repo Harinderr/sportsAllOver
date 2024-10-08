@@ -5,7 +5,6 @@ import { NextResponse } from "next/server"
 export async function GET(req,res){
     const {searchParams} =  new URL(req.url)
     const pslug = searchParams.get('postslug') || ""
-    console.log(pslug)
     try {
         const posts = await prisma.post.findMany({
             where : {

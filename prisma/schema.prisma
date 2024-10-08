@@ -111,8 +111,11 @@ model Replies {
   user User @relation(fields: [userEmail], references: [email])
   postSlug String
    post Post  @relation(fields : [postSlug], references : [slug])
-  commentId String
-  comment Comment @relation(fields: [commentId], references: [id])
+  commentId String?
+  comment Comment? @relation(fields: [commentId], references: [id])
+  parentReplyId String?
+  parentReply  Replies? @relation("ReplyToReply", fields: [parentReplyId], references: [id],onDelete: NoAction, onUpdate: NoAction)
+  replies Replies[] @relation("ReplyToReply")
 
 }
 
