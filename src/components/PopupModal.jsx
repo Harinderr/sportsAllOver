@@ -46,7 +46,7 @@ export default function Modal({ setIsOpen ,email}) {
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-hoverBg p-6 rounded-lg shadow-lg w-2/3">
+        <div className="bg-hoverBg p-6 rounded-lg shadow-lg sm:w-2/3 w-full">
           <h2 className="text-xl font-bold mb-4">Change Password</h2>
           <form action="" className="flex flex-col gap-2">
             <label htmlFor="exitingPass text-sm">Existing Password</label>
@@ -80,7 +80,7 @@ export default function Modal({ setIsOpen ,email}) {
             />
             {error?.confirmNewPass && <div className="text-red-500 text-xs">{error.confirmNewPass}</div>}
           </form>
-          <div className="buttonwrapper flex justify-between">
+          <div className="buttonwrapper flex justify-between sm:flex-row flex-col">
             <button
               className="bg-blue-500 mt-4 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-600"
               onClick={() => setIsOpen(false)}

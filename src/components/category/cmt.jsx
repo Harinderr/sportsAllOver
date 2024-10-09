@@ -56,7 +56,7 @@ export const Cmt = ({
   return (
     <div
       className={`${styles.comment_container} ${
-        type === "replies" && "ml-2 mb-4 border-[1px] border-slate-600"
+        type === "replies" && "ml-1 mb-4 border-[1px] border-slate-600"
       } rounded-xl bg-bgBlack  sm:px-8 sm:py-4 px-4 py-4`}
     >
       {/* User Details */}
@@ -78,14 +78,14 @@ export const Cmt = ({
             </div>
           </div>
         )}
-        <div className="detail text-[4px] sm:text-sm">
+        <div className="detail text-sm">
           <p>{val?.name}</p>
           <p>{convertTime(val.createdAt)}</p>
         </div>
       </div>
 
       {/* Comment Text */}
-      <div className={`${styles.comment} text-[6px] sm:text-sm py-2`}>{val.des}</div>
+      <div className={`${styles.comment}  text-sm py-2`}>{val.des}</div>
 
       {/* Action Buttons (View/Hide Replies and Reply) */}
       <div className="impressionsBox xs:w-1/2 w-full flex flow-row justify-around ml-auto">
@@ -102,13 +102,13 @@ export const Cmt = ({
               }));
             }
           }}
-          className="text-blue-500 text-[4px] sm:text-sm cursor-pointer"
+          className="text-blue-500 text-sm cursor-pointer"
         >
           {cmtRepliesVisiblity[val.id] ? "Hide replies" : "View replies"}
         </span>
-        <div onClick={() => handleReply(val.id)} className="ml-auto flex flex-row gap-2 cursor-pointer">
-          <span className="text-[6px] sm:text-sm hover:text-blue-400">Reply</span>
-          <LiaReplySolid className="text-[16px] sm:text-xl hover:text-blue-400" />
+        <div onClick={() => handleReply(val.id)} className="ml-auto flex flex-row justify-center items-center gap-2 cursor-pointer">
+          <span className="text-sm hover:text-blue-400">Reply</span>
+          <LiaReplySolid className="text-sm  hover:text-blue-400" />
         </div>
       </div>
 

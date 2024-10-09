@@ -18,6 +18,7 @@ export default function Write() {
     EditorState.createEmpty()
   );
   const {data : session} = useSession()
+  const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState("");
   const [subDes , setSubDes] = useState('')
   const [file, setFile] = useState('')
@@ -56,6 +57,7 @@ export default function Write() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true)
     const imageUrls = extractImageUrls()
     console.log(imageUrls)
     try {
@@ -83,9 +85,11 @@ export default function Write() {
       });
       if (res.ok) {
         alert("data sent");
+        setLoading(false)
         router.push("/");
       }
     } catch (err) {
+      setLoading(false)
       console.log("there is an eroro while sending data");
     }
   }
@@ -170,9 +174,9 @@ uploadTask.on('state_changed',
          <MyEditor editorState={editorState} setEditorState={setEditorState}></MyEditor>
         <button
           onClick={(e) => handleSubmit(e)}
-          className="bg-blue-600 p-4 rounded-t-md text-lg capitalize  "
+          className="bg-blue-600 p-4 disabled:opacity-40 rounded-t-md text-lg capitalize  "
         >
-          Publish
+         {loading ? 'Publishing' : 'Publish'} 
         </button>
       </div>
     </div>

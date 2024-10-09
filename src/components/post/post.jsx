@@ -77,7 +77,7 @@ export default function Post(
   const contentTextLimit = subDes && subDes?.substring(0, 80) + '...'
 
   return (
-    <div className="postContainer xs:h-72 xs:w-56 w-full h-48 relative group rounded-md">
+    <div key={id} className="postContainer xs:h-72 xs:w-56 w-full h-48 relative group rounded-md">
       <div className="z-10 text-xs rounded-full flex flex-row justify-between items-center gap-2 p-1 absolute right-1 top-1">
         <span className="border-2 px-1 capitalize border-blue-500 rounded-full">
           {catSlug}

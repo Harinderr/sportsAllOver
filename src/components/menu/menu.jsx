@@ -12,7 +12,7 @@ export default function Menu() {
            const res = await fetch('/api/popular')
            if (res.ok){
                const { result } = await res.json()
-               console.log(result)
+            
                setData(result)
                
            }

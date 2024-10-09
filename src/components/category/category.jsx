@@ -27,7 +27,7 @@ export default  function Category() {
     },[])
 
     return (
-        <div className={`${styles.container} mx-auto w-2/3 mt-8  flex justify-around flex-wrap  flex-row gap-2 bg-bgBlack`}>
+        <div className={`${styles.container} sm:mx-auto p-2 sm:w-2/3 w-full mt-8  flex justify-around flex-wrap  flex-row gap-2 bg-bgBlack`}>
         {
             data.map(item => {
                 return <div className='bg-inputBg text-center text-xs w-24 sm:text-sm cursor-pointer capitalize hover:bg-gray-700  px-3 py-2 rounded-lg ' key={item.id}  onClick={()=> router.push(`/blog?page=${1}&cat=${item.slug}`)}>{item.slug}</div>
