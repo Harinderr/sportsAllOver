@@ -42,7 +42,7 @@ const ReviewsSection = () => {
     <h2 className="text-4xl font-bold text-center mb-6">
       User <span className="text-blue-600">Reviews</span>
     </h2>
-    <Carousel className="">
+    <Carousel className="max-w-screen">
       <CarouselContent className="">
         {reviews.map((review, index) => (
           <CarouselItem key={index} className="sm:basis-1/3">
@@ -65,8 +65,8 @@ const ReviewsSection = () => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden sm:block" />
-      <CarouselNext className="hidden sm:block" />
+      <CarouselPrevious className="hidden" />
+      <CarouselNext className="hidden" />
     </Carousel>
   </div>
 </section>
