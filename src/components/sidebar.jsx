@@ -17,8 +17,8 @@ export default function Sidebar() {
 
   return (
     <div className=" bg-hoverBg min-h-screen  text-white flex  flex-col shadow-lg">
-     <Tabs defaultValue="profile" className="md:w-2/3 xs:w-4/5 w-full  my-10 mx-auto">
-  <TabsList>
+     <Tabs defaultValue="profile" className="md:w-2/3 xs:w-4/5  w-full  my-10 mx-auto">
+  <TabsList className='bg-black text-white'>
     <TabsTrigger value="profile">
      Profile
     </TabsTrigger>

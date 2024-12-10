@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
         <UserAuthProvider>
 
-          <ThemeContextProvider>
+          {/* <ThemeContextProvider> */}
             {/* <ThemeBox> */}
             <BookmarksProvider>
             <NextTopLoader />
@@ -59,7 +59,7 @@ export default function RootLayout({ children }) {
               <Footer />
             </BookmarksProvider>
             {/* </ThemeBox> */}
-          </ThemeContextProvider>
+          {/* </ThemeContextProvider> */}
           </UserAuthProvider>
         </AuthProvider>
       </body>

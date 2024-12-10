@@ -6,27 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
 
 :root {
---bg : white;
---textColor : black;
---softBg : #f0f0f0;
---softTextColor : #626262;
+  --bg : #2c2c2c;
+  --textColor : #ddd;
+  --softBg : #221f20;
+  --softTextColor : #a6a6a6;
 --contrastColor : rgb(254, 119, 70);
 
 }
 
-.light {
-    --bg : rgb(255, 255, 255);
---textColor : rgb(39, 39, 39);
---softBg : #e5e3e3;
---softTextColor : #8c8c8c;
-}
 
-.dark {
-    --bg : #2c2c2c;
-    --textColor : #ddd;
-    --softBg : #221f20;
-    --softTextColor : #a6a6a6;
-}
+
+
  
 h1, p ,a{
     color: var(--textColor);
