@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <Script async strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-T2PG4Y5BJY"></Script>
+        
         <Script
           id="google-analytics"
           strategy="afterInteractive"
@@ -50,18 +51,19 @@ export default function RootLayout({ children }) {
         <UserAuthProvider>
 
           <ThemeContextProvider>
-            <ThemeBox>
+            {/* <ThemeBox> */}
             <BookmarksProvider>
             <NextTopLoader />
              <Navbar />
               {children}
               <Footer />
             </BookmarksProvider>
-            </ThemeBox>
+            {/* </ThemeBox> */}
           </ThemeContextProvider>
           </UserAuthProvider>
         </AuthProvider>
       </body>
+      <Script src="https://cdn.paritydeals.com/banner.js"></Script>
     </html>
   );
 }
