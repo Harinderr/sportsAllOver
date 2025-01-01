@@ -59,3 +59,8 @@ export async function deleteImagesFromFirebase(imageUrls) {
   // Wait for all images to be deleted
   await Promise.all(deletionPromises);
 }
+
+
+export async function currentUrl(){
+  return window.location.href
+}
