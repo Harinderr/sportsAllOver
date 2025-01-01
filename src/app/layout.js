@@ -9,6 +9,7 @@ import { AuthProvider } from "@/provider/authProvider";
 import { UserAuthProvider } from '@/contextapi/UserAuthContext'
 import { BookmarksProvider } from "@/contextapi/bookmarksProvider";
 import NextTopLoader from "nextjs-toploader";
+import currentUrl from "@/lib/util"
 
 const roboto = Roboto_Slab({
   subsets: ["latin"],
@@ -63,7 +64,7 @@ export default function RootLayout({ children }) {
           </UserAuthProvider>
         </AuthProvider>
       </body>
-      <Script src="http://localhost:3000/api/products/24d7dab6-9eba-41d9-b795-2693ac0b9d9f/banner?source=RootLayout"></Script>
+      <Script src=`http://localhost:3000/api/products/24d7dab6-9eba-41d9-b795-2693ac0b9d9f/banner?source=${currentUrl()}`></Script>
     </html>
   );
 }
