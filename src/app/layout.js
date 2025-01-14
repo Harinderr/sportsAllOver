@@ -64,7 +64,7 @@ export default function RootLayout({ children }) {
           </UserAuthProvider>
         </AuthProvider>
       </body>
-      <Script src=`http://localhost:3000/api/products/24d7dab6-9eba-41d9-b795-2693ac0b9d9f/banner?source=${currentUrl()}`></Script>
+      <Script src='https://eternity-deals.vercel.app/api/products/24d7dab6-9eba-41d9-b795-2693ac0b9d9f/banner'></Script>
     </html>
   );
 }
