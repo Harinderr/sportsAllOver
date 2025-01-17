@@ -1,79 +1,63 @@
-'use client';
+"use client";
 import styles from "./detailblog.module.css";
 import Image from "next/image";
 import Menu from "@/components/menu/menu";
 import Comment from "@/components/comment/comment";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { stateToHTML } from 'draft-js-export-html';
+import { stateToHTML } from "draft-js-export-html";
 
 import { convertFromRaw } from "draft-js";
+import { useQuery } from "@tanstack/react-query";
+import { Loader, Loader2 } from "lucide-react";
+import { formatDate } from "@/lib/utils";
 
 export default function DetailBlog() {
   const searchParams = useSearchParams();
-  const slug = searchParams.get('slug');
-  const [postContent ,setPostContent] = useState(null)
-  const [data, setData] = useState({});
-  const [time, setTime] = useState('');
+  const slug = searchParams.get("slug");
+  const [postContent, setPostContent] = useState(null);
+  const [time, setTime] = useState("");
+  const { isPending, error, data } = useQuery({
+    queryKey: slug ? [`${slug}`, { slug }] : [],
+    queryFn: getBlog,
+  });
 
-  useEffect(() => {
-    async function getBlog(slug) {
-      try {
-        const response = await fetch(`/api/posts/singlepost?slug=${slug}`);
-        if (response.ok) {
-          const { result } = await response.json();
-          
-          setData(result);
-        } else {
-          console.error('Failed to fetch blog data:', response.statusText);
-        }
-      } catch (err) {
-        console.error('Error fetching blog data:', err);
-      }
-    }
+  async function getBlog({ queryKey }) {
+    const [, { slug }] = queryKey;
+    const response = await fetch(`/api/posts/singlepost?slug=${slug}`);
+    const out = await response.json();
+    console.log(out);
+    return out.result;
+  }
 
-    if (slug) {
-      getBlog(slug);
-    }
-  }, [slug]);
+ 
+  
 
-  useEffect(() => {
-    const date = new Date(data.createdAt);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    setTime(`${day}-${month}-${year}`);
-  }, [data.createdAt]);
-
-  const firstLetter = data.user?.name?.slice(0, 1).toUpperCase();
-  const image = data.user?.image;
+  const firstLetter = data?.user?.name?.slice(0, 1).toUpperCase();
+  const image = data?.user?.image;
   useEffect(() => {
     if (!data?.des) {
       // If data.des is undefined or null, skip the processing
       return;
     }
-  
-    try {
-      // Parse the content if it's available
+try {
+  // Parse the content if it's available
       const rawContent = JSON.parse(data.des);
-      
       // Ensure the parsed content is valid before converting
       if (rawContent) {
         // Convert from Raw JSON to Draft.js Content State
         const contentState = convertFromRaw(rawContent);
-        
-        // Convert Content State to HTML
-        const htmlContent = stateToHTML(contentState)
-        
-        // Set the converted HTML content
+      // Convert Content State to HTML
+        const htmlContent = stateToHTML(contentState);
+         // Set the converted HTML content
         setPostContent(htmlContent);
       }
     } catch (error) {
-      console.error('Error parsing or converting content:', error);
+      console.error("Error parsing or converting content:", error);
     }
-  }, [data.des]);
-  
- 
+  }, [data?.des]);
+  if (isPending) return <Loader2></Loader2>;
+  if (error) return <p>The Error: {error}</p>;
   return (
     <div className={styles.blog_box}>
       <div className={styles.container}>
@@ -89,7 +73,7 @@ export default function DetailBlog() {
             )}
             <div className={styles.userDetail}>
               <p>{data.user?.name}</p>
-              <p>{time}</p>
+              <p>{formatDate(data?.createdAt)}</p>
             </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: postContent }} />
@@ -98,9 +82,8 @@ export default function DetailBlog() {
             <p className={`${styles.description} white-space: pre-wrap`}>{data.des}</p>
           </div> */}
         </div>
-       
       </div>
-          <Comment slug={slug} />
+      <Comment slug={slug} />
     </div>
   );
 }

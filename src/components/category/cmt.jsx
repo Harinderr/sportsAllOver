@@ -5,6 +5,7 @@ import { convertTime } from "@/lib/utils";
 import Image from "next/image";
 
 export const Cmt = ({
+  status,
   val,
   slug,
   selected,
@@ -25,6 +26,10 @@ export const Cmt = ({
   };
 
   async function handlePostReply(commentId) {
+    if (status == "unauthenticated") {
+      alert("login to comment or reply");
+      return false;
+    }
     try {
       setLoading(true);
       console.log(reply)

@@ -9,23 +9,23 @@ import {
 
 const reviews = [
   {
-    name: "John Doe",
-    text: "Great product! Highly recommend it to everyone.",
+    name: "Jade Smith",
+    text: "Great articles nice to read",
     rating: 5,
   },
   {
-    name: "John Doe",
-    text: "Great product! Highly recommend it to everyone.",
+    name: "Diana",
+    text: "Nice analysis and reports",
     rating: 5,
   },
   {
-    name: "John Doe",
-    text: "Great product! Highly recommend it to everyone.",
+    name: "Kyla junior",
+    text: "Everything is spot on.",
     rating: 5,
   },
   {
-    name: "Jane Smith",
-    text: "Good value for the price. Would buy again.",
+    name: "Bear",
+    text: "One of the best.",
     rating: 4,
   },
   {

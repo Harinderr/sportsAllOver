@@ -4,39 +4,29 @@ import Menu from "../menu/menu";
 import styles from "@/components/Blog/blog.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 
 export default function Blog({ page , cat }) {
-  const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const router = useRouter();
+  const { isPending, error, data} = useQuery({
+    queryKey : ['blog-posts',{page, cat}],
+    queryFn : blogData,
+    staleTime: 1000 * 60 * 5, // Optional: Cache freshness duration
+    refetchOnWindowFocus: false, // Optional: Disable refetching on window focus
 
+  })
   // Fetch data from the API
-  async function blogData(page, cat) {
-    try {
+  async function blogData({queryKey}) {
+    const [,{page,cat}] = queryKey;
       let response = await fetch(`/api/blog?page=${page}${cat ? `&cat=${cat}` : ''}`);
-      if (response.ok) {
-        let { result, count } = await response.json();
-        // Append the new posts to the existing data
-        if(page == 1) {
-          setData(result)
+        const res = await response.json()
+        setCount(res.result.length)
+        return res.result;
         }
-        else {
-
-          setData((prevData) => [...prevData, ...result]);  // Use spread operator to append
-        }
-        setCount(count);
-      }
-    } catch (err) {
-      console.log("There is an error", err);
-    }
-  }
-
-  // Fetch data when the component mounts or when page/cat changes
-  useEffect(() => {
-   
-    blogData(page, cat); // Fetch posts for the current page and category
-  }, [page, cat]); // Only refetch when `page` or `cat` changes
-
+  if(isPending) return <Loader></Loader>
+  if(error)return <p>There is error</p>
   return (
     <div className="bg-bgBlack w-full px-4 pb-10">
       <h1 className="text-4xl font-bold text-center py-10" id="latest">

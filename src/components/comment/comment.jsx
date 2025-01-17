@@ -110,6 +110,7 @@ export default function Comment({ slug }) {
           {!comment.length && <p className="text-center">No comments yet</p>}
           {comment.map((item) => (
             <Cmt
+             status={status}
               key={item.id}
               val={item}
               type={"comment"}
