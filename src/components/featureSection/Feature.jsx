@@ -1,8 +1,10 @@
 "use client";
 import styles from "@/components/featureSection/feature.module.css";
 import Navbar from "../navbar/navbar";
+import { useEffect, useRef } from "react";
 
 export default function Feature() {
+  const aniRef = useRef(null)
   function bgStyle() {
     const heading = document.getElementById("landing-heading");
     if (heading) {
@@ -10,17 +12,43 @@ export default function Feature() {
       heading.style.backgroundSize = 160 - window.pageYOffset / 12 + "%";
     }
   }
+  
+  function loadingAnimation(){
+    const text  = "FUEL YOUR PASSION IGNITE THE GAME"
+    const text2  = "Get the info on the latest sports events, players, and blogs on various sports."
+    const textArray = text.split("")
+    const textArray2 = text2.split("")
+    const heading = document.getElementById('landing-heading')
+    const para = document.getElementById('landing-paragraph')
+      let i = 0;
+      let j = 0
+      if(aniRef.current){
+        clearInterval(aniRef.current)
+      }
+      
+      aniRef.current = setInterval(() => {
+        if(i < textArray.length){
+          heading.innerHTML += textArray[i]
+          i++
+        }
+        else if( j < textArray2.length){
+          para.innerHTML += textArray2[j]
+          j++
+        }
+        else {
+          clearInterval(aniRef.current)
+          
+        }
+      }, 100);
+       
+    
+   }
 
-  // You can uncomment this when ready to test the scroll effect.
-  // useEffect(() => {
-  //     if (typeof window !== 'undefined') {
-  //         window.addEventListener('scroll', bgStyle);
-  //         return () => {
-  //             window.removeEventListener('scroll', bgStyle);
-  //         };
-  //     }
-  // }, []);
-
+  
+    useEffect(() => {
+       loadingAnimation()
+    },[])
+  
   return (
     <div className={`${styles.features}`}>
       <div className={`${styles.right} w-full overflow-hidden h-full`}>
@@ -29,14 +57,11 @@ export default function Feature() {
             id="landing-heading"
             className={`${styles.heading} font-extraBold tracking-normal text-[3.5rem] text-wrap md:text-[6rem] xl:text-[8rem] leading-none  text-slate-100`}
           >
-            FUEL YOUR <span className="text-blue-500">PASSION</span>, IGNITE THE
-            GAME
+           
           </h1>
 
-          <p className="text-xs sm:text-sm xl:text-xl tracking-wider">
-            Get the info on the latest sports events, players, and blogs of
-            various sports.
-          </p>
+          <p  id="landing-paragraph" className="text-xs sm:text-sm xl:text-xl tracking-wider">
+             </p>
           <button className="py-2 font-bold text-xs sm:text-sm xl:text-xl hover:bg-white hover:text-black px-4 sm:px-6 border-2 border-white">
             READ MORE
           </button>

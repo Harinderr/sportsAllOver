@@ -38,7 +38,7 @@ export default function PopularPost({
       <div className="text-gray-200 z-10 absolute left-0 bottom-0 w-full bg-gradient-to-t from-gray-900 via-gray-900/90 to-transparent">
         <div className="boxWrapper p-4">
           <Link
-            className="text-wrap h-auto font-semibold text-base md:text-xl hover:underline"
+            className="text-wrap h-auto font-semibold text-base md:text-xl xl:text-2xl hover:underline"
             href={`/posts/singlepost?slug=${slug}`}
           >
             {title?.substring(0, 40) + "..."}

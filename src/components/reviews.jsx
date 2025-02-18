@@ -1,3 +1,4 @@
+'use client'
 import {
     Carousel,
     CarouselContent,
@@ -5,7 +6,7 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
-  
+  import FadeInUp from "@/lib/loadingTransition";
 
 const reviews = [
   {
@@ -43,6 +44,7 @@ const ReviewsSection = () => {
       User <span className="text-blue-600">Reviews</span>
     </h2>
     <Carousel className="max-w-screen">
+        <FadeInUp>
       <CarouselContent className="">
         {reviews.map((review, index) => (
           <CarouselItem key={index} className="sm:basis-1/3">
@@ -65,6 +67,7 @@ const ReviewsSection = () => {
           </CarouselItem>
         ))}
       </CarouselContent>
+        </FadeInUp>
       <CarouselPrevious className="hidden" />
       <CarouselNext className="hidden" />
     </Carousel>

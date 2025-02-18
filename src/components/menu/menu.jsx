@@ -1,11 +1,17 @@
 "use client";
 import styles from "@/components/menu/menu.module.css";
-import Post from "../post/post";
-import Image from "next/image";
 import PopularPost from "../popularpost/popularpost";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
+import { motion } from "framer-motion";
+
+async function getData() {
+  const res = await fetch("/api/popular");
+  const out = await res.json();
+  return out.result;
+}
+
 export default function Menu() {
   const { isPending, error, data } = useQuery({
     queryKey: ["most-pop"],
@@ -13,14 +19,7 @@ export default function Menu() {
     staleTime: 1000 * 60 * 5, // Optional: Cache freshness duration
     refetchOnWindowFocus: false, // Optional: Disable refetching on window focus
   });
-  async function getData() {
-    const res = await fetch("/api/popular");
-    const out = await res.json();
-    return out.result
-  }
 
-  if (isPending) return <Loader className="text-center"></Loader>;
-  if (error) return <p>Error loading Data : {error.message}</p>;
 
   return (
     <div
@@ -31,21 +30,37 @@ export default function Menu() {
         MOST POPULAR
       </h4>
 
-      {/* Grid layout that changes on different breakpoints */}
-      <div className="post_wrapper px-4 grid grid-cols-1  xs:grid-cols-4 gap-3  md:px-8">
-        {data?.map((item, index) => (
-          <PopularPost
-            key={item.id}
-            index={index}
-            id={item.id}
-            src={item.img}
-            title={item.title}
-            subDes={item.subDes}
-            slug={item.slug}
-            catSlug={item.catSlug}
-          />
-        ))}
-      </div>
+      {/* Conditional rendering inside the component */}
+      {isPending ? (
+        <Loader className="text-center" />
+      ) : error ? (
+        <p>Error loading Data: {error.message}</p>
+      ) : (
+        <div
+          className={`${styles.post_wrapper} px-4  md:px-10 lg:px-40`}
+        > 
+             <motion.div
+             className=" grid grid-cols-1 xs:grid-cols-4 gap-3"
+             initial={{ opacity: 0, y: 70 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ duration: 1.5, ease: "easeOut" }}
+             viewport={{ once: true }}
+           >
+          {data?.map((item, index) => (
+            <PopularPost
+              key={item.id}
+              index={index}
+              id={item.id}
+              src={item.img}
+              title={item.title}
+              subDes={item.subDes}
+              slug={item.slug}
+              catSlug={item.catSlug}
+            />
+          ))}
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

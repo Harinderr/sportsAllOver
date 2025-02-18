@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
+import FadeInUp from "@/lib/loadingTransition";
+
 
 export default function Blog({ page , cat }) {
   const [count, setCount] = useState(0);
@@ -26,13 +28,17 @@ export default function Blog({ page , cat }) {
         return res.result;
         }
   if(isPending) return <Loader></Loader>
-  if(error)return <p>There is error</p>
+  if(error){
+    console.log(error)
+    return <p>There is error</p>
+  }
   return (
+   
     <div className="bg-bgBlack w-full px-4 pb-10">
       <h1 className="text-4xl font-bold text-center py-10" id="latest">
         LATEST
       </h1>
-
+    <FadeInUp>
       {/* Responsive wrapper for blog posts */}
       <div className="flex flex-wrap justify-center gap-6 px-2">
         {data?.map((val, index) => (
@@ -48,9 +54,9 @@ export default function Blog({ page , cat }) {
           />
         ))}
       </div>
-
+      </FadeInUp>
       {/* Button Wrapper */}
-      <div className="flex justify-center py-8">
+      <div className="flex justify-center py-8 transition-opacity duration-1000 ease-in ">
         <button
           disabled={Math.ceil(count / 4) === page}
           onClick={() => {
@@ -67,5 +73,6 @@ export default function Blog({ page , cat }) {
         </button>
       </div>
     </div>
+   
   );
 }
